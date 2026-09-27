@@ -5,7 +5,7 @@ pydantic==2.9.2
 python-multipart==0.0.9
 
 # Track A (perception) — now used for real by backend/perception/interface.py
-ultralytics==8.2.0      # YOLOv8 (installs torch/torchvision automatically)
+ultralytics>=8.3.0      # YOLOv8 (installs torch/torchvision automatically)
 opencv-python==4.10.0.84
 scikit-learn==1.5.2     # K-means
 
