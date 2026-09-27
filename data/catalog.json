@@ -1,0 +1,8402 @@
+[
+  {
+    "id": "itm_00000",
+    "name": "Colonial Gray Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "colonial"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "marble",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00001",
+    "name": "Bauhaus Gold Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "wool",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00002",
+    "name": "Bohemian Silver Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "cork",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00003",
+    "name": "Victorian Emerald Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "victorian"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "bamboo",
+    "room_type": "loft"
+  },
+  {
+    "id": "itm_00004",
+    "name": "Provincial Azure Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "provincial"
+    ],
+    "color_tags": [
+      "azure"
+    ],
+    "material": "oak",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00005",
+    "name": "Coastal Bronze Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "pine",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00006",
+    "name": "Colonial Gold Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "colonial"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "wool",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00007",
+    "name": "Scandinavian Gray Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "scandinavian"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "brass",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00008",
+    "name": "Bohemian Emerald Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "aluminum",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00009",
+    "name": "Minimalist Beige Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "leather",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00010",
+    "name": "Rustic Mauve Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "rustic"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "oak",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00011",
+    "name": "Bohemian Azure Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "azure"
+    ],
+    "material": "marble",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00012",
+    "name": "Industrial White Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "white"
+    ],
+    "material": "rattan",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00013",
+    "name": "Modern Oak Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "cork",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00014",
+    "name": "Zen Ivory Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "brass",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00015",
+    "name": "Provincial Black Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "provincial"
+    ],
+    "color_tags": [
+      "black"
+    ],
+    "material": "walnut",
+    "room_type": "dorm"
+  },
+  {
+    "id": "itm_00016",
+    "name": "Traditional Ivory Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "wool",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00017",
+    "name": "Deco Silver Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "rattan",
+    "room_type": "dorm"
+  },
+  {
+    "id": "itm_00018",
+    "name": "Coastal Beige Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "brass",
+    "room_type": "guest"
+  },
+  {
+    "id": "itm_00019",
+    "name": "Colonial Navy Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "colonial"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "oak",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00020",
+    "name": "Deco Gold Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "marble",
+    "room_type": "guest"
+  },
+  {
+    "id": "itm_00021",
+    "name": "Traditional Oak Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "marble",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00022",
+    "name": "Bauhaus Bronze Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "leather",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00023",
+    "name": "Bohemian Oak Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "wool",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00024",
+    "name": "Minimalist Gold Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "steel",
+    "room_type": "guest"
+  },
+  {
+    "id": "itm_00025",
+    "name": "Zen Mauve Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "teak",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00026",
+    "name": "Minimalist Bronze Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "oak",
+    "room_type": "guest"
+  },
+  {
+    "id": "itm_00027",
+    "name": "Modern Azure Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "azure"
+    ],
+    "material": "oak",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00028",
+    "name": "Victorian Beige Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "victorian"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "pine",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00029",
+    "name": "Bohemian Gray Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "oak",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00031",
+    "name": "Victorian Navy Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "victorian"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "brass",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00032",
+    "name": "Provincial Gray Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "provincial"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "brass",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00033",
+    "name": "Traditional Mauve Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "teak",
+    "room_type": "loft"
+  },
+  {
+    "id": "itm_00034",
+    "name": "Scandinavian Emerald Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "scandinavian"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "teak",
+    "room_type": "guest"
+  },
+  {
+    "id": "itm_00035",
+    "name": "Rustic Burgundy Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "rustic"
+    ],
+    "color_tags": [
+      "burgundy"
+    ],
+    "material": "teak",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00036",
+    "name": "Traditional Crimson Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "crimson"
+    ],
+    "material": "teak",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00037",
+    "name": "Industrial Mauve Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "velvet",
+    "room_type": "guest"
+  },
+  {
+    "id": "itm_00038",
+    "name": "Scandinavian Crimson Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "scandinavian"
+    ],
+    "color_tags": [
+      "crimson"
+    ],
+    "material": "leather",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00039",
+    "name": "Industrial Emerald Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "rattan",
+    "room_type": "loft"
+  },
+  {
+    "id": "itm_00040",
+    "name": "Rustic Black Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "rustic"
+    ],
+    "color_tags": [
+      "black"
+    ],
+    "material": "cotton",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00041",
+    "name": "Bauhaus Ivory Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "aluminum",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00042",
+    "name": "Minimalist Azure Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "azure"
+    ],
+    "material": "aluminum",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00043",
+    "name": "Deco Navy Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "brass",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00046",
+    "name": "Modern Burgundy Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "burgundy"
+    ],
+    "material": "cork",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00047",
+    "name": "Bauhaus White Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "white"
+    ],
+    "material": "walnut",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00049",
+    "name": "Minimalist Burgundy Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "burgundy"
+    ],
+    "material": "pine",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00051",
+    "name": "Coastal Oak Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "teak",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00052",
+    "name": "Provincial Oak Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "provincial"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "velvet",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00053",
+    "name": "Futuristic Silver Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "rattan",
+    "room_type": "guest"
+  },
+  {
+    "id": "itm_00054",
+    "name": "Bauhaus Mauve Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "steel",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00056",
+    "name": "Victorian Burgundy Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "victorian"
+    ],
+    "color_tags": [
+      "burgundy"
+    ],
+    "material": "leather",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00057",
+    "name": "Traditional Burgundy Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "burgundy"
+    ],
+    "material": "rattan",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00058",
+    "name": "Scandinavian Beige Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "scandinavian"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "walnut",
+    "room_type": "dorm"
+  },
+  {
+    "id": "itm_00059",
+    "name": "Rustic Walnut Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "rustic"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "teak",
+    "room_type": "loft"
+  },
+  {
+    "id": "itm_00060",
+    "name": "Traditional Walnut Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "wool",
+    "room_type": "guest"
+  },
+  {
+    "id": "itm_00061",
+    "name": "Zen Gold Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "leather",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00062",
+    "name": "Provincial Ivory Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "provincial"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "brass",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00064",
+    "name": "Futuristic Oak Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "bamboo",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00067",
+    "name": "Traditional Black Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "black"
+    ],
+    "material": "aluminum",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00070",
+    "name": "Traditional White Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "white"
+    ],
+    "material": "pine",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00071",
+    "name": "Colonial Walnut Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "colonial"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "wool",
+    "room_type": "loft"
+  },
+  {
+    "id": "itm_00072",
+    "name": "Zen Bronze Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "aluminum",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00073",
+    "name": "Victorian Black Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "victorian"
+    ],
+    "color_tags": [
+      "black"
+    ],
+    "material": "leather",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00074",
+    "name": "Bauhaus Azure Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "azure"
+    ],
+    "material": "rattan",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00076",
+    "name": "Bohemian White Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "white"
+    ],
+    "material": "brass",
+    "room_type": "dorm"
+  },
+  {
+    "id": "itm_00077",
+    "name": "Scandinavian Navy Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "scandinavian"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "wool",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00078",
+    "name": "Zen Beige Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "marble",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00079",
+    "name": "Victorian Gold Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "victorian"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "teak",
+    "room_type": "loft"
+  },
+  {
+    "id": "itm_00080",
+    "name": "Bauhaus Brown Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "brown"
+    ],
+    "material": "wool",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00081",
+    "name": "Deco Oak Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "brass",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00082",
+    "name": "Deco Coral Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "pine",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00083",
+    "name": "Coastal Ivory Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "leather",
+    "room_type": "loft"
+  },
+  {
+    "id": "itm_00084",
+    "name": "Colonial Ivory Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "colonial"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "teak",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00086",
+    "name": "Modern Silver Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "cotton",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00089",
+    "name": "Minimalist White Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "white"
+    ],
+    "material": "bamboo",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00090",
+    "name": "Provincial Mauve Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "provincial"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "oak",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00092",
+    "name": "Deco White Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "white"
+    ],
+    "material": "bamboo",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00093",
+    "name": "Modern Gold Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "pine",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00095",
+    "name": "Rustic Emerald Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "rustic"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "teak",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00096",
+    "name": "Coastal Black Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "black"
+    ],
+    "material": "brass",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00099",
+    "name": "Bohemian Beige Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "steel",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00103",
+    "name": "Futuristic White Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "white"
+    ],
+    "material": "teak",
+    "room_type": "guest"
+  },
+  {
+    "id": "itm_00104",
+    "name": "Modern Black Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "black"
+    ],
+    "material": "wool",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00106",
+    "name": "Modern Navy Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "cotton",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00107",
+    "name": "Bauhaus Walnut Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "oak",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00108",
+    "name": "Zen Gray Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "teak",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00109",
+    "name": "Traditional Gray Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "aluminum",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00110",
+    "name": "Bohemian Coral Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "oak",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00111",
+    "name": "Futuristic Walnut Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "aluminum",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00114",
+    "name": "Deco Burgundy Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "burgundy"
+    ],
+    "material": "oak",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00115",
+    "name": "Victorian Azure Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "victorian"
+    ],
+    "color_tags": [
+      "azure"
+    ],
+    "material": "leather",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00116",
+    "name": "Deco Brown Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "brown"
+    ],
+    "material": "steel",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00117",
+    "name": "Provincial Burgundy Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "provincial"
+    ],
+    "color_tags": [
+      "burgundy"
+    ],
+    "material": "cotton",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00118",
+    "name": "Modern Walnut Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "oak",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00119",
+    "name": "Bohemian Burgundy Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "burgundy"
+    ],
+    "material": "cork",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00120",
+    "name": "Coastal Crimson Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "crimson"
+    ],
+    "material": "bamboo",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00121",
+    "name": "Minimalist Emerald Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "marble",
+    "room_type": "loft"
+  },
+  {
+    "id": "itm_00122",
+    "name": "Bauhaus Beige Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "steel",
+    "room_type": "dorm"
+  },
+  {
+    "id": "itm_00123",
+    "name": "Zen Burgundy Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "burgundy"
+    ],
+    "material": "leather",
+    "room_type": "dorm"
+  },
+  {
+    "id": "itm_00124",
+    "name": "Minimalist Coral Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "oak",
+    "room_type": "dorm"
+  },
+  {
+    "id": "itm_00126",
+    "name": "Futuristic Emerald Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "wool",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00127",
+    "name": "Zen Coral Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "teak",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00128",
+    "name": "Zen Emerald Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "pine",
+    "room_type": "loft"
+  },
+  {
+    "id": "itm_00130",
+    "name": "Colonial Mauve Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "colonial"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "leather",
+    "room_type": "guest"
+  },
+  {
+    "id": "itm_00132",
+    "name": "Futuristic Black Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "black"
+    ],
+    "material": "cotton",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00133",
+    "name": "Zen Navy Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "brass",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00135",
+    "name": "Minimalist Mauve Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "wool",
+    "room_type": "dorm"
+  },
+  {
+    "id": "itm_00136",
+    "name": "Rustic Bronze Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "rustic"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "rattan",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00138",
+    "name": "Scandinavian Mauve Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "scandinavian"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "steel",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00140",
+    "name": "Modern Gray Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "rattan",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00142",
+    "name": "Bauhaus Navy Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "velvet",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00145",
+    "name": "Victorian Oak Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "victorian"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "velvet",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00146",
+    "name": "Scandinavian Coral Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "scandinavian"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "velvet",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00147",
+    "name": "Victorian Mauve Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "victorian"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "steel",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00148",
+    "name": "Minimalist Ivory Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "leather",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00149",
+    "name": "Rustic Coral Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "rustic"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "rattan",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00151",
+    "name": "Bohemian Mauve Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "oak",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00153",
+    "name": "Bauhaus Burgundy Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "burgundy"
+    ],
+    "material": "steel",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00158",
+    "name": "Industrial Burgundy Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "burgundy"
+    ],
+    "material": "pine",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00159",
+    "name": "Traditional Bronze Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "walnut",
+    "room_type": "dorm"
+  },
+  {
+    "id": "itm_00160",
+    "name": "Rustic Ivory Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "rustic"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "leather",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00161",
+    "name": "Coastal Coral Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "oak",
+    "room_type": "guest"
+  },
+  {
+    "id": "itm_00163",
+    "name": "Deco Ivory Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "walnut",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00164",
+    "name": "Scandinavian Black Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "scandinavian"
+    ],
+    "color_tags": [
+      "black"
+    ],
+    "material": "velvet",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00166",
+    "name": "Deco Mauve Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "mauve"
+    ],
+    "material": "leather",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00168",
+    "name": "Scandinavian Oak Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "scandinavian"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "brass",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00169",
+    "name": "Victorian Coral Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "victorian"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "rattan",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00170",
+    "name": "Colonial Beige Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "colonial"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "leather",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00171",
+    "name": "Modern Emerald Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "bamboo",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00173",
+    "name": "Bohemian Ivory Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "teak",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00175",
+    "name": "Bohemian Brown Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "brown"
+    ],
+    "material": "rattan",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00177",
+    "name": "Victorian Silver Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "victorian"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "cork",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00179",
+    "name": "Modern Beige Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "steel",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_00180",
+    "name": "Zen Walnut Bed",
+    "category": "bed",
+    "price": 9000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "cotton",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00181",
+    "name": "Industrial Black Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "black"
+    ],
+    "material": "steel",
+    "room_type": "nursery"
+  },
+  {
+    "id": "itm_00183",
+    "name": "Bohemian Navy Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "cotton",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00186",
+    "name": "Scandinavian White Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "scandinavian"
+    ],
+    "color_tags": [
+      "white"
+    ],
+    "material": "teak",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00187",
+    "name": "Bauhaus Black Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "black"
+    ],
+    "material": "steel",
+    "room_type": "dorm"
+  },
+  {
+    "id": "itm_00188",
+    "name": "Minimalist Oak Bed",
+    "category": "bed",
+    "price": 12000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "velvet",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00190",
+    "name": "Traditional Emerald Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "walnut",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00192",
+    "name": "Bohemian Bronze Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "bohemian"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "steel",
+    "room_type": "suite"
+  },
+  {
+    "id": "itm_00194",
+    "name": "Traditional Beige Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "aluminum",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00198",
+    "name": "Futuristic Beige Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "velvet",
+    "room_type": "studio"
+  },
+  {
+    "id": "itm_00204",
+    "name": "Minimalist Silver Bed",
+    "category": "bed",
+    "price": 2000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "rattan",
+    "room_type": "loft"
+  },
+  {
+    "id": "itm_00207",
+    "name": "Zen Crimson Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "crimson"
+    ],
+    "material": "wool",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00208",
+    "name": "Minimalist Crimson Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "minimalist"
+    ],
+    "color_tags": [
+      "crimson"
+    ],
+    "material": "rattan",
+    "room_type": "master"
+  },
+  {
+    "id": "itm_00209",
+    "name": "Bauhaus Emerald Bed",
+    "category": "bed",
+    "price": 25000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "oak",
+    "room_type": "penthouse"
+  },
+  {
+    "id": "itm_00213",
+    "name": "Provincial Coral Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "provincial"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "teak",
+    "room_type": "dorm"
+  },
+  {
+    "id": "itm_00216",
+    "name": "Futuristic Ivory Bed",
+    "category": "bed",
+    "price": 15000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "oak",
+    "room_type": "kids"
+  },
+  {
+    "id": "itm_00218",
+    "name": "Coastal Silver Bed",
+    "category": "bed",
+    "price": 5000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "leather",
+    "room_type": "vacation"
+  },
+  {
+    "id": "itm_02250",
+    "name": "Organic Coral Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "silk",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02251",
+    "name": "Organic Orange Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "orange"
+    ],
+    "material": "velvet",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02252",
+    "name": "Baroque Blush Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "baroque"
+    ],
+    "color_tags": [
+      "blush"
+    ],
+    "material": "wool",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02253",
+    "name": "Minimal Teal Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "teal"
+    ],
+    "material": "boucle",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02254",
+    "name": "Japanese Blush Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "japanese"
+    ],
+    "color_tags": [
+      "blush"
+    ],
+    "material": "chenille",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02255",
+    "name": "Modern Orange Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "orange"
+    ],
+    "material": "rush",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02256",
+    "name": "Retro Terra Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "retro"
+    ],
+    "color_tags": [
+      "terra"
+    ],
+    "material": "linen",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02257",
+    "name": "Coastal Ivory Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "canvas",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02258",
+    "name": "Gothic Taupe Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "taupe"
+    ],
+    "material": "wool",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02259",
+    "name": "Classic Gray Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "classic"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "velvet",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02260",
+    "name": "Coastal Beige Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "linen",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02261",
+    "name": "Deco Blush Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "blush"
+    ],
+    "material": "polyester",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02262",
+    "name": "Italian Orange Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "italian"
+    ],
+    "color_tags": [
+      "orange"
+    ],
+    "material": "canvas",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02263",
+    "name": "Modern Blush Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "blush"
+    ],
+    "material": "canvas",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02264",
+    "name": "Organic Beige Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "wool",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02265",
+    "name": "Deco Terra Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "terra"
+    ],
+    "material": "silk",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02266",
+    "name": "Coastal Charcoal Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "charcoal"
+    ],
+    "material": "velvet",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02267",
+    "name": "Eclectic Coral Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "eclectic"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "silk",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02268",
+    "name": "Coastal Navy Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "rush",
+    "room_type": "lounge"
+  },
+  {
+    "id": "itm_02270",
+    "name": "Deco Navy Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "tweed",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02271",
+    "name": "Baroque Coral Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "baroque"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "wool",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02272",
+    "name": "Gothic Navy Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "boucle",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02273",
+    "name": "Industrial Beige Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "suede",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02274",
+    "name": "Industrial Plum Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "plum"
+    ],
+    "material": "cork",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02275",
+    "name": "Industrial Mint Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "mint"
+    ],
+    "material": "leather",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02276",
+    "name": "Organic Sage Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "sage"
+    ],
+    "material": "chenille",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02277",
+    "name": "Brutalist Charcoal Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "charcoal"
+    ],
+    "material": "canvas",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02278",
+    "name": "Deco Gray Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "suede",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02279",
+    "name": "Baroque Beige Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "baroque"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "mohair",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02280",
+    "name": "Modern Beige Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "boucle",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02281",
+    "name": "Coastal Teal Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "teal"
+    ],
+    "material": "chenille",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02282",
+    "name": "Brutalist Orange Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "orange"
+    ],
+    "material": "linen",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02283",
+    "name": "Brutalist Mint Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "mint"
+    ],
+    "material": "boucle",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02284",
+    "name": "Industrial Coral Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "wool",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02285",
+    "name": "Modern Plum Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "plum"
+    ],
+    "material": "polyester",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02287",
+    "name": "Nordic Coral Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "velvet",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02288",
+    "name": "Gothic Olive Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "olive"
+    ],
+    "material": "tweed",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02289",
+    "name": "Coastal Gray Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "tweed",
+    "room_type": "lounge"
+  },
+  {
+    "id": "itm_02290",
+    "name": "Organic Charcoal Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "charcoal"
+    ],
+    "material": "polyester",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02292",
+    "name": "Gothic Gray Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "rush",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02295",
+    "name": "Baroque Ochre Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "baroque"
+    ],
+    "color_tags": [
+      "ochre"
+    ],
+    "material": "tweed",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02296",
+    "name": "Modern Navy Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "boucle",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02297",
+    "name": "Modern Mint Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "mint"
+    ],
+    "material": "tweed",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02298",
+    "name": "Coastal Terra Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "terra"
+    ],
+    "material": "canvas",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02299",
+    "name": "Nordic Beige Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "canvas",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02300",
+    "name": "Brutalist Ivory Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "velvet",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02302",
+    "name": "Retro Taupe Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "retro"
+    ],
+    "color_tags": [
+      "taupe"
+    ],
+    "material": "wool",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02303",
+    "name": "Classic Blush Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "classic"
+    ],
+    "color_tags": [
+      "blush"
+    ],
+    "material": "denim",
+    "room_type": "lounge"
+  },
+  {
+    "id": "itm_02304",
+    "name": "Nordic Terra Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "terra"
+    ],
+    "material": "rush",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02305",
+    "name": "Eclectic Orange Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "eclectic"
+    ],
+    "color_tags": [
+      "orange"
+    ],
+    "material": "chenille",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02306",
+    "name": "Baroque Teal Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "baroque"
+    ],
+    "color_tags": [
+      "teal"
+    ],
+    "material": "boucle",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02308",
+    "name": "Japanese Navy Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "japanese"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "velvet",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02309",
+    "name": "Brutalist Gray Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "denim",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02310",
+    "name": "Coastal Sage Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "sage"
+    ],
+    "material": "leather",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02311",
+    "name": "Japanese Orange Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "japanese"
+    ],
+    "color_tags": [
+      "orange"
+    ],
+    "material": "velvet",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02316",
+    "name": "Organic Terra Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "terra"
+    ],
+    "material": "denim",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02317",
+    "name": "Gothic Mint Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "mint"
+    ],
+    "material": "suede",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02318",
+    "name": "Deco Teal Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "teal"
+    ],
+    "material": "polyester",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02321",
+    "name": "Baroque Plum Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "baroque"
+    ],
+    "color_tags": [
+      "plum"
+    ],
+    "material": "mohair",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02322",
+    "name": "Classic Sage Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "classic"
+    ],
+    "color_tags": [
+      "sage"
+    ],
+    "material": "silk",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02323",
+    "name": "Coastal Taupe Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "taupe"
+    ],
+    "material": "tweed",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02326",
+    "name": "Japanese Ochre Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "japanese"
+    ],
+    "color_tags": [
+      "ochre"
+    ],
+    "material": "denim",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02328",
+    "name": "Retro Navy Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "retro"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "leather",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02329",
+    "name": "Italian Gray Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "italian"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "polyester",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02330",
+    "name": "Organic Teal Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "teal"
+    ],
+    "material": "tweed",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02331",
+    "name": "Italian Taupe Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "italian"
+    ],
+    "color_tags": [
+      "taupe"
+    ],
+    "material": "leather",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02332",
+    "name": "Minimal Ivory Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "denim",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02333",
+    "name": "Japanese Gray Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "japanese"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "canvas",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02334",
+    "name": "Brutalist Olive Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "olive"
+    ],
+    "material": "cork",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02335",
+    "name": "Classic Mint Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "classic"
+    ],
+    "color_tags": [
+      "mint"
+    ],
+    "material": "cork",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02337",
+    "name": "Italian Blush Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "italian"
+    ],
+    "color_tags": [
+      "blush"
+    ],
+    "material": "chenille",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02339",
+    "name": "Brutalist Sage Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "sage"
+    ],
+    "material": "boucle",
+    "room_type": "lounge"
+  },
+  {
+    "id": "itm_02340",
+    "name": "Classic Charcoal Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "classic"
+    ],
+    "color_tags": [
+      "charcoal"
+    ],
+    "material": "silk",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02341",
+    "name": "Retro Olive Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "retro"
+    ],
+    "color_tags": [
+      "olive"
+    ],
+    "material": "polyester",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02344",
+    "name": "Gothic Terra Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "terra"
+    ],
+    "material": "leather",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02348",
+    "name": "Modern Ochre Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "ochre"
+    ],
+    "material": "chenille",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02350",
+    "name": "Deco Beige Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "rush",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02351",
+    "name": "Nordic Gray Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "wool",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02352",
+    "name": "Baroque Navy Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "baroque"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "suede",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02354",
+    "name": "Organic Navy Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "boucle",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02356",
+    "name": "Nordic Orange Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "orange"
+    ],
+    "material": "silk",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02357",
+    "name": "Minimal Olive Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "olive"
+    ],
+    "material": "wool",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02358",
+    "name": "Eclectic Blush Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "eclectic"
+    ],
+    "color_tags": [
+      "blush"
+    ],
+    "material": "cork",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02359",
+    "name": "Gothic Sage Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "sage"
+    ],
+    "material": "canvas",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02361",
+    "name": "Industrial Sage Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "sage"
+    ],
+    "material": "chenille",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02362",
+    "name": "Industrial Blush Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "blush"
+    ],
+    "material": "mohair",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02363",
+    "name": "Brutalist Taupe Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "taupe"
+    ],
+    "material": "rush",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02366",
+    "name": "Modern Ivory Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "canvas",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02367",
+    "name": "Brutalist Blush Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "blush"
+    ],
+    "material": "polyester",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02368",
+    "name": "Italian Coral Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "italian"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "polyester",
+    "room_type": "lounge"
+  },
+  {
+    "id": "itm_02371",
+    "name": "Italian Mint Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "italian"
+    ],
+    "color_tags": [
+      "mint"
+    ],
+    "material": "silk",
+    "room_type": "lounge"
+  },
+  {
+    "id": "itm_02373",
+    "name": "Coastal Blush Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "blush"
+    ],
+    "material": "linen",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02374",
+    "name": "Retro Orange Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "retro"
+    ],
+    "color_tags": [
+      "orange"
+    ],
+    "material": "linen",
+    "room_type": "lounge"
+  },
+  {
+    "id": "itm_02379",
+    "name": "Classic Ivory Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "classic"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "velvet",
+    "room_type": "lounge"
+  },
+  {
+    "id": "itm_02383",
+    "name": "Organic Plum Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "plum"
+    ],
+    "material": "tweed",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02385",
+    "name": "Baroque Sage Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "baroque"
+    ],
+    "color_tags": [
+      "sage"
+    ],
+    "material": "mohair",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02386",
+    "name": "Industrial Navy Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "leather",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02387",
+    "name": "Deco Coral Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "tweed",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02389",
+    "name": "Gothic Teal Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "teal"
+    ],
+    "material": "suede",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02390",
+    "name": "Minimal Plum Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "plum"
+    ],
+    "material": "boucle",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02393",
+    "name": "Classic Ochre Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "classic"
+    ],
+    "color_tags": [
+      "ochre"
+    ],
+    "material": "wool",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02394",
+    "name": "Brutalist Terra Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "terra"
+    ],
+    "material": "canvas",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02397",
+    "name": "Classic Navy Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "classic"
+    ],
+    "color_tags": [
+      "navy"
+    ],
+    "material": "cork",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02398",
+    "name": "Deco Taupe Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "taupe"
+    ],
+    "material": "canvas",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02399",
+    "name": "Classic Coral Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "classic"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "tweed",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02400",
+    "name": "Eclectic Charcoal Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "eclectic"
+    ],
+    "color_tags": [
+      "charcoal"
+    ],
+    "material": "boucle",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02401",
+    "name": "Japanese Sage Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "japanese"
+    ],
+    "color_tags": [
+      "sage"
+    ],
+    "material": "canvas",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02402",
+    "name": "Industrial Teal Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "teal"
+    ],
+    "material": "chenille",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02406",
+    "name": "Nordic Ivory Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "polyester",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02407",
+    "name": "Nordic Plum Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "plum"
+    ],
+    "material": "suede",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02408",
+    "name": "Italian Beige Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "italian"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "cork",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02409",
+    "name": "Minimal Beige Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "linen",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02413",
+    "name": "Retro Ochre Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "retro"
+    ],
+    "color_tags": [
+      "ochre"
+    ],
+    "material": "denim",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02414",
+    "name": "Japanese Beige Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "japanese"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "canvas",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02416",
+    "name": "Minimal Sage Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "sage"
+    ],
+    "material": "suede",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02417",
+    "name": "Nordic Sage Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "sage"
+    ],
+    "material": "wool",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02419",
+    "name": "Retro Gray Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "retro"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "linen",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02422",
+    "name": "Modern Terra Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "terra"
+    ],
+    "material": "tweed",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02423",
+    "name": "Minimal Terra Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "terra"
+    ],
+    "material": "leather",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02424",
+    "name": "Baroque Ivory Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "baroque"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "linen",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02425",
+    "name": "Nordic Olive Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "olive"
+    ],
+    "material": "wool",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02430",
+    "name": "Industrial Olive Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "olive"
+    ],
+    "material": "linen",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02432",
+    "name": "Minimal Gray Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "gray"
+    ],
+    "material": "boucle",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02433",
+    "name": "Japanese Plum Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "japanese"
+    ],
+    "color_tags": [
+      "plum"
+    ],
+    "material": "polyester",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02434",
+    "name": "Eclectic Teal Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "eclectic"
+    ],
+    "color_tags": [
+      "teal"
+    ],
+    "material": "polyester",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02435",
+    "name": "Coastal Ochre Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "ochre"
+    ],
+    "material": "leather",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02436",
+    "name": "Deco Sage Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "sage"
+    ],
+    "material": "rush",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02445",
+    "name": "Industrial Charcoal Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "charcoal"
+    ],
+    "material": "boucle",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02446",
+    "name": "Italian Teal Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "italian"
+    ],
+    "color_tags": [
+      "teal"
+    ],
+    "material": "denim",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_02448",
+    "name": "Nordic Blush Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "blush"
+    ],
+    "material": "canvas",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02449",
+    "name": "Modern Teal Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "teal"
+    ],
+    "material": "linen",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02450",
+    "name": "Coastal Orange Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "orange"
+    ],
+    "material": "chenille",
+    "room_type": "lobby"
+  },
+  {
+    "id": "itm_02453",
+    "name": "Japanese Taupe Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "japanese"
+    ],
+    "color_tags": [
+      "taupe"
+    ],
+    "material": "denim",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02454",
+    "name": "Japanese Mint Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "japanese"
+    ],
+    "color_tags": [
+      "mint"
+    ],
+    "material": "linen",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02455",
+    "name": "Gothic Orange Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "orange"
+    ],
+    "material": "boucle",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02457",
+    "name": "Brutalist Beige Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "beige"
+    ],
+    "material": "leather",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_02458",
+    "name": "Retro Coral Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "retro"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "velvet",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02459",
+    "name": "Japanese Terra Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "japanese"
+    ],
+    "color_tags": [
+      "terra"
+    ],
+    "material": "tweed",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02461",
+    "name": "Gothic Coral Sofa",
+    "category": "sofa",
+    "price": 15000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "coral"
+    ],
+    "material": "leather",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02463",
+    "name": "Minimal Orange Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "orange"
+    ],
+    "material": "mohair",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02464",
+    "name": "Classic Teal Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "classic"
+    ],
+    "color_tags": [
+      "teal"
+    ],
+    "material": "chenille",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02465",
+    "name": "Deco Olive Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "olive"
+    ],
+    "material": "boucle",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_02469",
+    "name": "Gothic Charcoal Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "charcoal"
+    ],
+    "material": "leather",
+    "room_type": "lounge"
+  },
+  {
+    "id": "itm_02471",
+    "name": "Retro Charcoal Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "retro"
+    ],
+    "color_tags": [
+      "charcoal"
+    ],
+    "material": "suede",
+    "room_type": "theater"
+  },
+  {
+    "id": "itm_02472",
+    "name": "Modern Charcoal Sofa",
+    "category": "sofa",
+    "price": 25000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "charcoal"
+    ],
+    "material": "linen",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02473",
+    "name": "Minimal Ochre Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "ochre"
+    ],
+    "material": "tweed",
+    "room_type": "library"
+  },
+  {
+    "id": "itm_02474",
+    "name": "Minimal Charcoal Sofa",
+    "category": "sofa",
+    "price": 2000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "charcoal"
+    ],
+    "material": "silk",
+    "room_type": "lounge"
+  },
+  {
+    "id": "itm_02479",
+    "name": "Industrial Ivory Sofa",
+    "category": "sofa",
+    "price": 9000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "ivory"
+    ],
+    "material": "suede",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_02485",
+    "name": "Gothic Plum Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "gothic"
+    ],
+    "color_tags": [
+      "plum"
+    ],
+    "material": "mohair",
+    "room_type": "lounge"
+  },
+  {
+    "id": "itm_02488",
+    "name": "Eclectic Terra Sofa",
+    "category": "sofa",
+    "price": 5000,
+    "style_tags": [
+      "eclectic"
+    ],
+    "color_tags": [
+      "terra"
+    ],
+    "material": "velvet",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04500",
+    "name": "Architectural Pearl Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "pearl"
+    ],
+    "material": "felt",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04501",
+    "name": "Futuristic Ruby Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "ruby"
+    ],
+    "material": "steel",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04502",
+    "name": "Minimal Bronze Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "cork",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04503",
+    "name": "Ergonomic Chrome Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "ergonomic"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "velvet",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04504",
+    "name": "Postmodern Bronze Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "postmodern"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "plastic",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04505",
+    "name": "Organic Bronze Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "leather",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04506",
+    "name": "Organic Sapphire Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "sapphire"
+    ],
+    "material": "plastic",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04507",
+    "name": "Nordic Ruby Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "ruby"
+    ],
+    "material": "felt",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04508",
+    "name": "Streamline Gold Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "mesh",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04509",
+    "name": "Organic Onyx Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "felt",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04510",
+    "name": "Deconstructed Cream Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "deconstructed"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "cork",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04511",
+    "name": "Architectural Ruby Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "ruby"
+    ],
+    "material": "velvet",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04512",
+    "name": "Futuristic Brass Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "mesh",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04513",
+    "name": "Futuristic Pearl Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "pearl"
+    ],
+    "material": "leather",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04515",
+    "name": "Bauhaus Ash Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "metal",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04516",
+    "name": "Futuristic Gold Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "bamboo",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04517",
+    "name": "Deconstructed Brass Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "deconstructed"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "cork",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04518",
+    "name": "Biomorphic Chrome Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "aluminum",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04519",
+    "name": "Minimal Chrome Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "cork",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04520",
+    "name": "Sculptural Ash Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "sculptural"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "rattan",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04521",
+    "name": "Organic Pearl Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "pearl"
+    ],
+    "material": "aluminum",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04522",
+    "name": "Classical Sapphire Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "classical"
+    ],
+    "color_tags": [
+      "sapphire"
+    ],
+    "material": "composite",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04523",
+    "name": "Nordic Onyx Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "aluminum",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04524",
+    "name": "Classical Cream Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "classical"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "metal",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04525",
+    "name": "Classical Pearl Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "classical"
+    ],
+    "color_tags": [
+      "pearl"
+    ],
+    "material": "plywood",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04526",
+    "name": "Streamline Onyx Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "composite",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04527",
+    "name": "Classical Cognac Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "classical"
+    ],
+    "color_tags": [
+      "cognac"
+    ],
+    "material": "carbon",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04529",
+    "name": "Industrial Ash Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "felt",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04530",
+    "name": "Classical Amber Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "classical"
+    ],
+    "color_tags": [
+      "amber"
+    ],
+    "material": "leather",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04531",
+    "name": "Architectural Cognac Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "cognac"
+    ],
+    "material": "mesh",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04532",
+    "name": "Bauhaus Copper Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "felt",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04533",
+    "name": "Postmodern Ash Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "postmodern"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "mesh",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04535",
+    "name": "Sculptural Bronze Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "sculptural"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "steel",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04536",
+    "name": "Brutalist Cognac Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "cognac"
+    ],
+    "material": "cork",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04537",
+    "name": "Postmodern Pearl Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "postmodern"
+    ],
+    "color_tags": [
+      "pearl"
+    ],
+    "material": "plywood",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04538",
+    "name": "Minimal Amber Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "amber"
+    ],
+    "material": "steel",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04540",
+    "name": "Postmodern Ruby Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "postmodern"
+    ],
+    "color_tags": [
+      "ruby"
+    ],
+    "material": "mesh",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04541",
+    "name": "Bauhaus Silver Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "cork",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04542",
+    "name": "Futuristic Ash Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "plastic",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04544",
+    "name": "Architectural Silver Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "mesh",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04545",
+    "name": "Biomorphic Bronze Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "bamboo",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04546",
+    "name": "Industrial Bronze Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "rattan",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04547",
+    "name": "Futuristic Chrome Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "bamboo",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04549",
+    "name": "Streamline Emerald Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "metal",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04550",
+    "name": "Nordic Gold Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "felt",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04551",
+    "name": "Bauhaus Amber Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "amber"
+    ],
+    "material": "metal",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04552",
+    "name": "Organic Silver Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "plywood",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04553",
+    "name": "Minimal Emerald Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "bamboo",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04554",
+    "name": "Streamline Amber Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "amber"
+    ],
+    "material": "bamboo",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04555",
+    "name": "Nordic Cream Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "composite",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04557",
+    "name": "Streamline Bronze Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "oak",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04558",
+    "name": "Industrial Amber Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "amber"
+    ],
+    "material": "bamboo",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04559",
+    "name": "Bauhaus Cream Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "rattan",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04560",
+    "name": "Streamline Pearl Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "pearl"
+    ],
+    "material": "rattan",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04561",
+    "name": "Postmodern Chrome Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "postmodern"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "velvet",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04562",
+    "name": "Deconstructed Silver Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "deconstructed"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "rattan",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04563",
+    "name": "Architectural Bronze Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "composite",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04564",
+    "name": "Classical Ruby Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "classical"
+    ],
+    "color_tags": [
+      "ruby"
+    ],
+    "material": "aluminum",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04565",
+    "name": "Biomorphic Cream Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "mesh",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04567",
+    "name": "Architectural Emerald Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "felt",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04568",
+    "name": "Ergonomic Emerald Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "ergonomic"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "aluminum",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04569",
+    "name": "Sculptural Cream Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "sculptural"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "leather",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04571",
+    "name": "Streamline Sapphire Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "sapphire"
+    ],
+    "material": "bamboo",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04574",
+    "name": "Classical Gold Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "classical"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "cork",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04576",
+    "name": "Deconstructed Ash Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "deconstructed"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "velvet",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04577",
+    "name": "Deconstructed Gold Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "deconstructed"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "steel",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04578",
+    "name": "Ergonomic Cream Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "ergonomic"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "mesh",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04579",
+    "name": "Architectural Amber Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "amber"
+    ],
+    "material": "steel",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04580",
+    "name": "Classical Copper Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "classical"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "plastic",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04581",
+    "name": "Streamline Cognac Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "cognac"
+    ],
+    "material": "rattan",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04582",
+    "name": "Bauhaus Pearl Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "pearl"
+    ],
+    "material": "plywood",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04584",
+    "name": "Streamline Brass Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "leather",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04586",
+    "name": "Sculptural Onyx Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "sculptural"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "leather",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04589",
+    "name": "Ergonomic Copper Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "ergonomic"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "bamboo",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04590",
+    "name": "Industrial Cream Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "felt",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04591",
+    "name": "Ergonomic Ash Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "ergonomic"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "composite",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04593",
+    "name": "Brutalist Chrome Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "plastic",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04595",
+    "name": "Industrial Chrome Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "oak",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04597",
+    "name": "Industrial Gold Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "rattan",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04598",
+    "name": "Ergonomic Brass Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "ergonomic"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "velvet",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04599",
+    "name": "Postmodern Onyx Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "postmodern"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "bamboo",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04600",
+    "name": "Postmodern Copper Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "postmodern"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "carbon",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04602",
+    "name": "Architectural Cream Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "felt",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04603",
+    "name": "Postmodern Silver Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "postmodern"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "mesh",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04604",
+    "name": "Postmodern Cream Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "postmodern"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "metal",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04605",
+    "name": "Streamline Chrome Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "bamboo",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04607",
+    "name": "Deconstructed Sapphire Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "deconstructed"
+    ],
+    "color_tags": [
+      "sapphire"
+    ],
+    "material": "bamboo",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04610",
+    "name": "Industrial Sapphire Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "sapphire"
+    ],
+    "material": "carbon",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04611",
+    "name": "Brutalist Bronze Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "plastic",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04612",
+    "name": "Streamline Cream Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "aluminum",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04614",
+    "name": "Architectural Ash Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "metal",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04615",
+    "name": "Brutalist Pearl Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "pearl"
+    ],
+    "material": "aluminum",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04616",
+    "name": "Biomorphic Pearl Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "pearl"
+    ],
+    "material": "cork",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04617",
+    "name": "Nordic Brass Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "oak",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04619",
+    "name": "Sculptural Ruby Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "sculptural"
+    ],
+    "color_tags": [
+      "ruby"
+    ],
+    "material": "bamboo",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04625",
+    "name": "Sculptural Copper Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "sculptural"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "mesh",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04626",
+    "name": "Futuristic Cream Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "leather",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04627",
+    "name": "Brutalist Sapphire Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "sapphire"
+    ],
+    "material": "mesh",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04628",
+    "name": "Nordic Ash Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "cork",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04629",
+    "name": "Biomorphic Amber Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "amber"
+    ],
+    "material": "leather",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04634",
+    "name": "Ergonomic Amber Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "ergonomic"
+    ],
+    "color_tags": [
+      "amber"
+    ],
+    "material": "aluminum",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04635",
+    "name": "Biomorphic Onyx Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "plastic",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04636",
+    "name": "Architectural Sapphire Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "sapphire"
+    ],
+    "material": "bamboo",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04637",
+    "name": "Sculptural Emerald Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "sculptural"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "felt",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04639",
+    "name": "Organic Emerald Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "oak",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04640",
+    "name": "Bauhaus Bronze Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "steel",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04641",
+    "name": "Bauhaus Ruby Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "ruby"
+    ],
+    "material": "metal",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04644",
+    "name": "Industrial Brass Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "leather",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04645",
+    "name": "Industrial Ruby Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "ruby"
+    ],
+    "material": "leather",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04652",
+    "name": "Bauhaus Onyx Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "mesh",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04654",
+    "name": "Deconstructed Ruby Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "deconstructed"
+    ],
+    "color_tags": [
+      "ruby"
+    ],
+    "material": "leather",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04656",
+    "name": "Deconstructed Emerald Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "deconstructed"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "plywood",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04658",
+    "name": "Organic Brass Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "leather",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04661",
+    "name": "Bauhaus Emerald Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "cork",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04663",
+    "name": "Organic Ruby Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "ruby"
+    ],
+    "material": "composite",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04664",
+    "name": "Brutalist Cream Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "cream"
+    ],
+    "material": "mesh",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04666",
+    "name": "Architectural Copper Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "metal",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04671",
+    "name": "Sculptural Chrome Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "sculptural"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "composite",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04673",
+    "name": "Brutalist Amber Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "amber"
+    ],
+    "material": "carbon",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04676",
+    "name": "Minimal Silver Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "plywood",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04677",
+    "name": "Ergonomic Gold Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "ergonomic"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "leather",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04678",
+    "name": "Bauhaus Chrome Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "plywood",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04680",
+    "name": "Minimal Gold Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "plastic",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04683",
+    "name": "Deconstructed Copper Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "deconstructed"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "oak",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04688",
+    "name": "Deconstructed Chrome Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "deconstructed"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "velvet",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04692",
+    "name": "Nordic Copper Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "cork",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04693",
+    "name": "Futuristic Onyx Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "composite",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04700",
+    "name": "Classical Brass Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "classical"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "carbon",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_04701",
+    "name": "Ergonomic Sapphire Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "ergonomic"
+    ],
+    "color_tags": [
+      "sapphire"
+    ],
+    "material": "velvet",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04702",
+    "name": "Organic Gold Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "oak",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04703",
+    "name": "Biomorphic Brass Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "steel",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04704",
+    "name": "Industrial Cognac Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "cognac"
+    ],
+    "material": "rattan",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04705",
+    "name": "Organic Copper Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "oak",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04708",
+    "name": "Organic Ash Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "velvet",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04710",
+    "name": "Sculptural Cognac Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "sculptural"
+    ],
+    "color_tags": [
+      "cognac"
+    ],
+    "material": "plastic",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04711",
+    "name": "Classical Silver Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "classical"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "velvet",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_04713",
+    "name": "Architectural Brass Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "plywood",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04717",
+    "name": "Biomorphic Emerald Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "velvet",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04722",
+    "name": "Streamline Silver Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "streamline"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "aluminum",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04724",
+    "name": "Biomorphic Ash Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "cork",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04727",
+    "name": "Brutalist Silver Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "silver"
+    ],
+    "material": "metal",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04728",
+    "name": "Sculptural Pearl Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "sculptural"
+    ],
+    "color_tags": [
+      "pearl"
+    ],
+    "material": "oak",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04729",
+    "name": "Classical Emerald Chair",
+    "category": "chair",
+    "price": 5000,
+    "style_tags": [
+      "classical"
+    ],
+    "color_tags": [
+      "emerald"
+    ],
+    "material": "plywood",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_04730",
+    "name": "Postmodern Brass Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "postmodern"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "oak",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04731",
+    "name": "Deconstructed Pearl Chair",
+    "category": "chair",
+    "price": 2000,
+    "style_tags": [
+      "deconstructed"
+    ],
+    "color_tags": [
+      "pearl"
+    ],
+    "material": "aluminum",
+    "room_type": "gaming"
+  },
+  {
+    "id": "itm_04735",
+    "name": "Futuristic Amber Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "amber"
+    ],
+    "material": "carbon",
+    "room_type": "bedroom"
+  },
+  {
+    "id": "itm_04736",
+    "name": "Architectural Gold Chair",
+    "category": "chair",
+    "price": 9000,
+    "style_tags": [
+      "architectural"
+    ],
+    "color_tags": [
+      "gold"
+    ],
+    "material": "metal",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_04738",
+    "name": "Futuristic Bronze Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "futuristic"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "plastic",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_04740",
+    "name": "Minimal Ash Chair",
+    "category": "chair",
+    "price": 25000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "ash"
+    ],
+    "material": "composite",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_04742",
+    "name": "Brutalist Onyx Chair",
+    "category": "chair",
+    "price": 15000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "metal",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06750",
+    "name": "Coastal Walnut Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "concrete",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06751",
+    "name": "Zen Crystal Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "crystal"
+    ],
+    "material": "stone",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06752",
+    "name": "Parametric Brass Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "quartz",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06753",
+    "name": "Modern Oak Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "marble",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06754",
+    "name": "Hightech Brass Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "hightech"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "resin",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06755",
+    "name": "Deco Concrete Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "concrete"
+    ],
+    "material": "wood",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06756",
+    "name": "Coastal Chrome Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "wood",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06757",
+    "name": "Zen Steel Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "steel"
+    ],
+    "material": "composite",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06759",
+    "name": "Traditional Oak Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "steel",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06760",
+    "name": "Brutalist Slate Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "wood",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06761",
+    "name": "Primitive Bronze Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "primitive"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "marble",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06762",
+    "name": "Nordic Oak Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "brass",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06763",
+    "name": "Biomorphic Walnut Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "oak",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06765",
+    "name": "Organic Steel Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "steel"
+    ],
+    "material": "ceramic",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06766",
+    "name": "Brutalist Chrome Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "quartz",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06767",
+    "name": "Organic Crystal Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "crystal"
+    ],
+    "material": "marble",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06768",
+    "name": "Parametric Chrome Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "bamboo",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06769",
+    "name": "Bauhaus Bronze Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "glass",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06770",
+    "name": "Biomorphic Titanium Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "titanium"
+    ],
+    "material": "stone",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06771",
+    "name": "Modern Graphite Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "graphite"
+    ],
+    "material": "metal",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06772",
+    "name": "Traditional Copper Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "resin",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06773",
+    "name": "Parametric Oak Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "stone",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06774",
+    "name": "Coastal Oak Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "metal",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06775",
+    "name": "Zen Chrome Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "quartz",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06776",
+    "name": "Brutalist Brass Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "wood",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06777",
+    "name": "Brutalist Bronze Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "glass",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06778",
+    "name": "Zen Concrete Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "concrete"
+    ],
+    "material": "composite",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06779",
+    "name": "Traditional Crystal Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "crystal"
+    ],
+    "material": "ceramic",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06781",
+    "name": "Organic Bronze Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "ceramic",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06782",
+    "name": "Zen Slate Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "terrazzo",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06783",
+    "name": "Zen Titanium Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "titanium"
+    ],
+    "material": "wood",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06785",
+    "name": "Deco Obsidian Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "obsidian"
+    ],
+    "material": "composite",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06786",
+    "name": "Parametric Obsidian Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "obsidian"
+    ],
+    "material": "resin",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06787",
+    "name": "Traditional Titanium Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "titanium"
+    ],
+    "material": "marble",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06788",
+    "name": "Industrial Brass Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "bamboo",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06789",
+    "name": "Hightech Slate Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "hightech"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "oak",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06790",
+    "name": "Hightech Walnut Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "hightech"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "resin",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06791",
+    "name": "Hightech Marble Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "hightech"
+    ],
+    "color_tags": [
+      "marble"
+    ],
+    "material": "marble",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06793",
+    "name": "Organic Walnut Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "composite",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06794",
+    "name": "Traditional Bronze Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "glass",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06795",
+    "name": "Bauhaus Obsidian Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "obsidian"
+    ],
+    "material": "metal",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06796",
+    "name": "Primitive Concrete Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "primitive"
+    ],
+    "color_tags": [
+      "concrete"
+    ],
+    "material": "stone",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06797",
+    "name": "Industrial Steel Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "steel"
+    ],
+    "material": "concrete",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06798",
+    "name": "Parametric Marble Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "marble"
+    ],
+    "material": "marble",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06800",
+    "name": "Parametric Steel Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "steel"
+    ],
+    "material": "brass",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06801",
+    "name": "Parametric Copper Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "brass",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06802",
+    "name": "Brutalist Steel Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "steel"
+    ],
+    "material": "brass",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06803",
+    "name": "Nordic Bronze Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "quartz",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06804",
+    "name": "Primitive Slate Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "primitive"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "resin",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06805",
+    "name": "Brutalist Marble Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "marble"
+    ],
+    "material": "marble",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06806",
+    "name": "Parametric Slate Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "resin",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06807",
+    "name": "Biomorphic Bronze Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "wood",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06808",
+    "name": "Bauhaus Crystal Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "crystal"
+    ],
+    "material": "oak",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06810",
+    "name": "Zen Onyx Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "glass",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06811",
+    "name": "Traditional Marble Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "marble"
+    ],
+    "material": "metal",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06812",
+    "name": "Modern Marble Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "marble"
+    ],
+    "material": "marble",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06814",
+    "name": "Hightech Graphite Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "hightech"
+    ],
+    "color_tags": [
+      "graphite"
+    ],
+    "material": "wood",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06815",
+    "name": "Brutalist Walnut Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "terrazzo",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06817",
+    "name": "Biomorphic Graphite Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "graphite"
+    ],
+    "material": "stone",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06821",
+    "name": "Zen Brass Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "metal",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06822",
+    "name": "Minimal Onyx Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "steel",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06825",
+    "name": "Brutalist Oak Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "resin",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06827",
+    "name": "Zen Oak Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "ceramic",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06828",
+    "name": "Biomorphic Chrome Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "resin",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06829",
+    "name": "Minimal Oak Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "brass",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06832",
+    "name": "Traditional Steel Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "steel"
+    ],
+    "material": "ceramic",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06833",
+    "name": "Hightech Concrete Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "hightech"
+    ],
+    "color_tags": [
+      "concrete"
+    ],
+    "material": "bamboo",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06834",
+    "name": "Traditional Obsidian Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "obsidian"
+    ],
+    "material": "metal",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06836",
+    "name": "Organic Brass Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "brass",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06837",
+    "name": "Brutalist Copper Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "terrazzo",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06838",
+    "name": "Bauhaus Onyx Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "concrete",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06839",
+    "name": "Brutalist Obsidian Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "obsidian"
+    ],
+    "material": "bamboo",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06840",
+    "name": "Nordic Walnut Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "glass",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06841",
+    "name": "Nordic Copper Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "composite",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06842",
+    "name": "Nordic Chrome Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "stone",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06843",
+    "name": "Bauhaus Walnut Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "concrete",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06845",
+    "name": "Deco Copper Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "oak",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06846",
+    "name": "Zen Copper Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "stone",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06847",
+    "name": "Coastal Copper Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "composite",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06850",
+    "name": "Modern Slate Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "brass",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06851",
+    "name": "Parametric Walnut Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "bamboo",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06853",
+    "name": "Hightech Copper Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "hightech"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "concrete",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06854",
+    "name": "Modern Bronze Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "terrazzo",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06855",
+    "name": "Brutalist Graphite Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "graphite"
+    ],
+    "material": "bamboo",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06856",
+    "name": "Coastal Titanium Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "titanium"
+    ],
+    "material": "glass",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06857",
+    "name": "Industrial Oak Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "ceramic",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06860",
+    "name": "Bauhaus Copper Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "bamboo",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06864",
+    "name": "Modern Brass Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "composite",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06865",
+    "name": "Deco Titanium Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "titanium"
+    ],
+    "material": "brass",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06868",
+    "name": "Brutalist Crystal Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "brutalist"
+    ],
+    "color_tags": [
+      "crystal"
+    ],
+    "material": "steel",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06870",
+    "name": "Bauhaus Chrome Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "chrome"
+    ],
+    "material": "glass",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06876",
+    "name": "Organic Slate Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "marble",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06878",
+    "name": "Parametric Bronze Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "metal",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06880",
+    "name": "Zen Walnut Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "terrazzo",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06881",
+    "name": "Organic Concrete Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "concrete"
+    ],
+    "material": "brass",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06882",
+    "name": "Minimal Steel Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "steel"
+    ],
+    "material": "quartz",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06884",
+    "name": "Zen Graphite Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "zen"
+    ],
+    "color_tags": [
+      "graphite"
+    ],
+    "material": "glass",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06888",
+    "name": "Minimal Obsidian Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "obsidian"
+    ],
+    "material": "glass",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06890",
+    "name": "Biomorphic Slate Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "composite",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06891",
+    "name": "Parametric Graphite Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "graphite"
+    ],
+    "material": "marble",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06892",
+    "name": "Traditional Graphite Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "graphite"
+    ],
+    "material": "oak",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06894",
+    "name": "Industrial Graphite Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "graphite"
+    ],
+    "material": "resin",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06898",
+    "name": "Organic Marble Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "marble"
+    ],
+    "material": "quartz",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06899",
+    "name": "Nordic Titanium Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "titanium"
+    ],
+    "material": "ceramic",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06907",
+    "name": "Primitive Onyx Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "primitive"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "marble",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06908",
+    "name": "Deco Walnut Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "terrazzo",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06910",
+    "name": "Parametric Concrete Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "concrete"
+    ],
+    "material": "metal",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06912",
+    "name": "Industrial Concrete Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "concrete"
+    ],
+    "material": "oak",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06913",
+    "name": "Modern Steel Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "steel"
+    ],
+    "material": "oak",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06914",
+    "name": "Primitive Titanium Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "primitive"
+    ],
+    "color_tags": [
+      "titanium"
+    ],
+    "material": "concrete",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06917",
+    "name": "Traditional Brass Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "bamboo",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06919",
+    "name": "Minimal Graphite Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "graphite"
+    ],
+    "material": "steel",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06920",
+    "name": "Deco Slate Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "oak",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06921",
+    "name": "Biomorphic Marble Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "marble"
+    ],
+    "material": "resin",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06922",
+    "name": "Industrial Titanium Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "titanium"
+    ],
+    "material": "quartz",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06923",
+    "name": "Deco Onyx Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "composite",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06924",
+    "name": "Nordic Graphite Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "graphite"
+    ],
+    "material": "brass",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06930",
+    "name": "Hightech Crystal Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "hightech"
+    ],
+    "color_tags": [
+      "crystal"
+    ],
+    "material": "bamboo",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06933",
+    "name": "Industrial Copper Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "industrial"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "composite",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06935",
+    "name": "Coastal Concrete Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "concrete"
+    ],
+    "material": "steel",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06936",
+    "name": "Minimal Walnut Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "concrete",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06938",
+    "name": "Parametric Crystal Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "crystal"
+    ],
+    "material": "concrete",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06939",
+    "name": "Modern Concrete Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "concrete"
+    ],
+    "material": "ceramic",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06941",
+    "name": "Deco Bronze Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "deco"
+    ],
+    "color_tags": [
+      "bronze"
+    ],
+    "material": "bamboo",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06944",
+    "name": "Coastal Brass Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "glass",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06945",
+    "name": "Parametric Titanium Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "titanium"
+    ],
+    "material": "glass",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06946",
+    "name": "Organic Oak Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "oak",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06948",
+    "name": "Nordic Slate Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "ceramic",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06950",
+    "name": "Hightech Obsidian Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "hightech"
+    ],
+    "color_tags": [
+      "obsidian"
+    ],
+    "material": "terrazzo",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06952",
+    "name": "Coastal Slate Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "coastal"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "ceramic",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06958",
+    "name": "Hightech Oak Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "hightech"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "oak",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06959",
+    "name": "Nordic Marble Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "marble"
+    ],
+    "material": "steel",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06960",
+    "name": "Bauhaus Slate Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "bauhaus"
+    ],
+    "color_tags": [
+      "slate"
+    ],
+    "material": "oak",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06967",
+    "name": "Biomorphic Oak Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "oak"
+    ],
+    "material": "quartz",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06969",
+    "name": "Biomorphic Onyx Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "ceramic",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06971",
+    "name": "Primitive Copper Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "primitive"
+    ],
+    "color_tags": [
+      "copper"
+    ],
+    "material": "brass",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06972",
+    "name": "Primitive Brass Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "primitive"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "concrete",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06973",
+    "name": "Parametric Onyx Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "parametric"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "ceramic",
+    "room_type": "kitchen"
+  },
+  {
+    "id": "itm_06974",
+    "name": "Modern Onyx Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "modern"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "wood",
+    "room_type": "office"
+  },
+  {
+    "id": "itm_06975",
+    "name": "Primitive Crystal Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "primitive"
+    ],
+    "color_tags": [
+      "crystal"
+    ],
+    "material": "quartz",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06976",
+    "name": "Primitive Obsidian Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "primitive"
+    ],
+    "color_tags": [
+      "obsidian"
+    ],
+    "material": "bamboo",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06977",
+    "name": "Biomorphic Obsidian Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "obsidian"
+    ],
+    "material": "glass",
+    "room_type": "outdoor"
+  },
+  {
+    "id": "itm_06978",
+    "name": "Nordic Onyx Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "nordic"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "brass",
+    "room_type": "living"
+  },
+  {
+    "id": "itm_06982",
+    "name": "Traditional Walnut Table",
+    "category": "table",
+    "price": 15000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "steel",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_06992",
+    "name": "Primitive Walnut Table",
+    "category": "table",
+    "price": 2000,
+    "style_tags": [
+      "primitive"
+    ],
+    "color_tags": [
+      "walnut"
+    ],
+    "material": "bamboo",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06994",
+    "name": "Minimal Brass Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "minimal"
+    ],
+    "color_tags": [
+      "brass"
+    ],
+    "material": "bamboo",
+    "room_type": "dining"
+  },
+  {
+    "id": "itm_06995",
+    "name": "Hightech Titanium Table",
+    "category": "table",
+    "price": 5000,
+    "style_tags": [
+      "hightech"
+    ],
+    "color_tags": [
+      "titanium"
+    ],
+    "material": "ceramic",
+    "room_type": "study"
+  },
+  {
+    "id": "itm_06996",
+    "name": "Biomorphic Concrete Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "biomorphic"
+    ],
+    "color_tags": [
+      "concrete"
+    ],
+    "material": "oak",
+    "room_type": "cafe"
+  },
+  {
+    "id": "itm_06997",
+    "name": "Organic Titanium Table",
+    "category": "table",
+    "price": 9000,
+    "style_tags": [
+      "organic"
+    ],
+    "color_tags": [
+      "titanium"
+    ],
+    "material": "marble",
+    "room_type": "conference"
+  },
+  {
+    "id": "itm_07006",
+    "name": "Traditional Onyx Table",
+    "category": "table",
+    "price": 25000,
+    "style_tags": [
+      "traditional"
+    ],
+    "color_tags": [
+      "onyx"
+    ],
+    "material": "composite",
+    "room_type": "kitchen"
+  }
+]

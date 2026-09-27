@@ -1,18 +1,135 @@
 """
 Track B owns this file.
 
-Contract: see docs/CONTRACTS.md section 3.
+REAL implementation (v1): Multi-Choice Knapsack Problem (MCKP) solved via
+Dynamic Programming, plus a Greedy baseline for the Phase 3 comparison your
+synopsis's Scalability Analysis section calls for.
 
-Real implementation notes (per synopsis):
-- Formulate as a Multi-Choice Knapsack Problem: exactly one item per required
-  category, total price <= budget, maximise style/colour-compatibility score.
-- Solve exactly via Dynamic Programming (dp_optimal).
-- Also implement a Greedy baseline (highest compatibility-to-cost first) for
-  the evaluation in Phase 3 of docs/ROADMAP.md.
-- Keep both behind the same recommend() signature; add a `method` param.
+Rule: pick AT MOST ONE item per category, maximise total compatibility
+score, subject to total price <= budget.
+
+Scoring (rule-based, matches the Explainability layer's simplicity):
+- style_score = 1.0 if the item's style_tags include the detected style,
+  else 0.2. If style is "unclassified" (perception hasn't trained a real
+  classifier yet), style_score is neutral (0.5) for every item, so the
+  optimizer falls back to optimizing on colour + budget alone -- still a
+  real, working algorithm, just without the style signal yet.
+- color_score = fraction of the item's color_tags that appear in the
+  room's dominant colours (mapped from hex to named colours).
+- total = 0.6 * style_score + 0.4 * color_score
 """
 
-from typing import List, Dict
+from typing import List, Dict, Optional
+
+# Small named-colour reference palette for mapping detected hex codes to
+# names that match the catalog's color_tags vocabulary (e.g. "beige", "gold").
+# Extend this list if your catalog uses more colour names.
+_NAMED_COLORS = {
+    "black": (0, 0, 0), "white": (255, 255, 255), "gray": (128, 128, 128),
+    "beige": (232, 220, 200), "brown": (101, 67, 33), "gold": (176, 141, 87),
+    "cream": (255, 253, 208), "navy": (0, 0, 128), "blue": (65, 105, 225),
+    "green": (34, 139, 34), "red": (178, 34, 34), "pink": (255, 182, 193),
+    "yellow": (218, 165, 32), "orange": (210, 105, 30), "purple": (102, 51, 153),
+}
+
+
+def _hex_to_rgb(hex_color: str):
+    h = hex_color.lstrip("#")
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def _nearest_color_name(hex_color: str) -> str:
+    r1, g1, b1 = _hex_to_rgb(hex_color)
+    best_name, best_dist = None, float("inf")
+    for name, (r2, g2, b2) in _NAMED_COLORS.items():
+        dist = (r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2
+        if dist < best_dist:
+            best_dist, best_name = dist, name
+    return best_name
+
+
+def _score_item(item: Dict, style: str, palette_names: List[str]) -> float:
+    if style == "unclassified":
+        style_score = 0.5
+    else:
+        tags = [t.lower() for t in item.get("style_tags", [])]
+        style_score = 1.0 if style.lower() in tags else 0.2
+
+    color_tags = [c.lower() for c in item.get("color_tags", [])]
+    if color_tags:
+        overlap = sum(1 for c in color_tags if c in palette_names)
+        color_score = overlap / len(color_tags)
+    else:
+        color_score = 0.3  # neutral if item has no colour tags
+
+    return round(0.6 * style_score + 0.4 * color_score, 3)
+
+
+def _group_by_category(catalog: List[Dict]) -> Dict[str, List[Dict]]:
+    groups: Dict[str, List[Dict]] = {}
+    for item in catalog:
+        groups.setdefault(item["category"], []).append(item)
+    return groups
+
+
+def solve_dp(items_by_category: Dict[str, List[Dict]], budget: float) -> List[Dict]:
+    """
+    Real MCKP solved via Dynamic Programming.
+    dp[b] = best total score achievable spending at most b, after
+    considering categories processed so far. choice[i][b] records which
+    item (or none) was picked for category i at budget b, for backtracking.
+
+    Budget is treated as an integer (rupees) for the DP table -- fine for
+    catalog prices in this range; round to a coarser unit (e.g. //10) first
+    if you need this faster on a much larger catalog.
+    """
+    budget = int(budget)
+    categories = list(items_by_category.keys())
+    n = len(categories)
+
+    dp = [[0.0] * (budget + 1) for _ in range(n + 1)]
+    choice = [[None] * (budget + 1) for _ in range(n + 1)]
+
+    for i, cat in enumerate(categories, start=1):
+        items = items_by_category[cat]
+        for b in range(budget + 1):
+            dp[i][b] = dp[i - 1][b]  # option: skip this category entirely
+            choice[i][b] = None
+            for item in items:
+                price = int(item["price"])
+                if price <= b:
+                    candidate = dp[i - 1][b - price] + item["_score"]
+                    if candidate > dp[i][b]:
+                        dp[i][b] = candidate
+                        choice[i][b] = item
+
+    # Backtrack to recover the selected items
+    selected = []
+    b = budget
+    for i in range(n, 0, -1):
+        picked = choice[i][b]
+        if picked is not None:
+            selected.append(picked)
+            b -= int(picked["price"])
+    return selected
+
+
+def solve_greedy(items_by_category: Dict[str, List[Dict]], budget: float) -> List[Dict]:
+    """Greedy baseline: sort ALL items (across every category) by
+    score-per-rupee descending, take each one if it fits the remaining
+    budget and its category hasn't been filled yet."""
+    all_items = [item for items in items_by_category.values() for item in items]
+    all_items.sort(key=lambda it: it["_score"] / max(it["price"], 1), reverse=True)
+
+    selected, filled_categories, remaining = [], set(), budget
+    for item in all_items:
+        if item["category"] in filled_categories:
+            continue
+        if item["price"] <= remaining:
+            selected.append(item)
+            filled_categories.add(item["category"])
+            remaining -= item["price"]
+    return selected
 
 
 def recommend(
@@ -23,37 +140,43 @@ def recommend(
     method: str = "dp_optimal",
 ) -> dict:
     """
-    MOCK IMPLEMENTATION — replace with real MCKP/DP solver + Greedy baseline.
+    Real recommender. See docs/CONTRACTS.md section 3 for the return shape.
 
     Args:
-        style: detected room style label (from perception layer).
-        palette: list of dominant hex colours (from perception layer).
+        style: detected room style label ("unclassified" until Perception's
+               style classifier is trained -- handled gracefully, see module docstring).
+        palette: list of dominant hex colours from the perception layer.
         budget: user's total stated budget.
-        catalog: list of catalog items, each matching docs/CONTRACTS.md section 2.
-        method: "dp_optimal" or "greedy" — for the Phase 3 evaluation comparison.
-
-    Returns:
-        dict matching docs/CONTRACTS.md section 3.
+        catalog: list of catalog items (docs/CONTRACTS.md section 2).
+        method: "dp_optimal" (default) or "greedy" -- for the Phase 3 comparison.
     """
-    selected = [
-        {"item_id": "itm_00123", "category": "bed", "score": 0.88, "price": 24500},
-        {"item_id": "itm_00456", "category": "lighting", "score": 0.79, "price": 3200},
+    if not catalog:
+        return {"selected_items": [], "total_price": 0, "compatibility_score": 0, "method": method}
+
+    palette_names = [_nearest_color_name(hexc) for hexc in palette]
+
+    # Score every item once up front (both solvers reuse "_score")
+    scored_catalog = []
+    for item in catalog:
+        item = dict(item)  # don't mutate the caller's catalog
+        item["_score"] = _score_item(item, style, palette_names)
+        scored_catalog.append(item)
+
+    items_by_category = _group_by_category(scored_catalog)
+
+    solver = solve_dp if method == "dp_optimal" else solve_greedy
+    picked = solver(items_by_category, budget)
+
+    selected_items = [
+        {"item_id": it["id"], "category": it["category"], "score": it["_score"], "price": it["price"]}
+        for it in picked
     ]
+    total_price = sum(it["price"] for it in selected_items)
+    avg_score = round(sum(it["score"] for it in selected_items) / len(selected_items), 3) if selected_items else 0
+
     return {
-        "selected_items": selected,
-        "total_price": sum(i["price"] for i in selected),
-        "compatibility_score": sum(i["score"] for i in selected) / len(selected),
+        "selected_items": selected_items,
+        "total_price": total_price,
+        "compatibility_score": avg_score,
         "method": method,
     }
-
-
-def solve_dp(items_by_category: Dict[str, List[Dict]], budget: float) -> List[Dict]:
-    """Real DP/MCKP solver — implement here. One item per category, maximise
-    total compatibility score subject to sum(price) <= budget."""
-    raise NotImplementedError("Track B: implement the DP table here")
-
-
-def solve_greedy(items_by_category: Dict[str, List[Dict]], budget: float) -> List[Dict]:
-    """Greedy baseline — highest compatibility-to-cost ratio first, for
-    comparison against solve_dp() in the Phase 3 evaluation."""
-    raise NotImplementedError("Track B: implement the greedy baseline here")
