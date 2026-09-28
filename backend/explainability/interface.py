@@ -6,7 +6,7 @@ gap in the room, style match, colour match, and share of budget.
 """
 
 from typing import Dict
-from recommender.interface import _nearest_color_name
+from recommender.interface import matching_colors
 
 
 def explain(item: Dict, room_context: Dict) -> str:
@@ -30,8 +30,7 @@ def explain(item: Dict, room_context: Dict) -> str:
     if style != "unclassified" and style.lower() in style_tags:
         reasons.append(f"its {style} style matches your room")
 
-    palette_names = [_nearest_color_name(h) for h in room_context.get("dominant_colors", [])]
-    matched = [c for c in item.get("color_tags", []) if c.lower() in palette_names]
+    matched = matching_colors(item.get("color_tags", []), room_context.get("dominant_colors", []))
     if matched:
         reasons.append(f"its {', '.join(matched)} colour matches your room's palette")
 

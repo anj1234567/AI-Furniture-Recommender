@@ -8,15 +8,18 @@ mocked. As each remaining piece lands, this file doesn't need to change
 (that's the point of the contracts).
 """
 
-from fastapi import FastAPI, UploadFile, File, Form
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import shutil
 import os
 import json
 
 from perception.interface import analyze_room
+from perception.preprocess import REJECT_FLAT_RATIO
 from recommender.interface import (
     recommend, find_missing_categories, filter_to_missing, MIN_DETECTION_CONFIDENCE,
+    unmapped_colors,
 )
 from explainability.interface import explain
 from store_locator.interface import find_stores
@@ -33,6 +36,11 @@ app.add_middleware(
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+# Product photos saved by data/prepare_catalog.py, served at /images/<id>.jpg
+IMAGES_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "data", "images")
+os.makedirs(IMAGES_DIR, exist_ok=True)
+app.mount("/images", StaticFiles(directory=IMAGES_DIR), name="images")
 
 
 @app.on_event("startup")
@@ -58,6 +66,11 @@ except FileNotFoundError:
     ]
 
 
+_unmapped = unmapped_colors(CATALOG)
+if _unmapped:
+    print("Colour names not in the colour table (scored as neutral):", _unmapped)
+
+
 @app.post("/analyze")
 async def analyze(
     photo: UploadFile = File(...),
@@ -71,6 +84,13 @@ async def analyze(
         shutil.copyfileobj(photo.file, f)
 
     perception_result = analyze_room(photo_path)
+
+    if perception_result["image_quality"]["flat_ratio"] > REJECT_FLAT_RATIO:
+        raise HTTPException(
+            status_code=400,
+            detail="This doesn't look like a room photo (it looks like a screenshot or graphic). "
+                   "Please upload a photo of a room.",
+        )
 
     # Gap analysis: only recommend categories the room is missing.
     missing = find_missing_categories(CATALOG, perception_result["detections"])
@@ -95,6 +115,7 @@ async def analyze(
     for item in rec_result["selected_items"]:
         full = {**catalog_by_id.get(item["item_id"], {}), **item}
         item["name"] = full.get("name", item["category"])
+        item["image"] = full.get("image")
         item["explanation"] = explain(full, room_context)
         item["nearby_stores"] = find_stores(item["category"], lat, lng)
 

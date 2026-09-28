@@ -18,6 +18,7 @@ to demo with today.
 """
 
 import json
+import os
 from collections import defaultdict
 from datasets import load_dataset
 
@@ -34,11 +35,13 @@ PRICE_MAP = {
 }
 
 MAX_ITEMS_PER_TYPE = 150  # keeps the catalog + DP solver fast; raise if needed
+IMAGE_DIR = "images"      # product photos are saved here as small JPEGs
 
 
 def main():
     ds = load_dataset("filnow/furniture-synthetic-dataset", split="train")
 
+    os.makedirs(IMAGE_DIR, exist_ok=True)
     per_type_count = defaultdict(int)
     catalog = []
     seen = set()
@@ -55,8 +58,13 @@ def main():
         seen.add(key)
 
         price = PRICE_MAP.get(row["price_range"], 5000)
+        item_id = f"itm_{i:05d}"
+        img = row["image"].convert("RGB")
+        img.thumbnail((320, 320))
+        img.save(os.path.join(IMAGE_DIR, f"{item_id}.jpg"), quality=80)
         catalog.append({
-            "id": f"itm_{i:05d}",
+            "id": item_id,
+            "image": f"/images/{item_id}.jpg",
             "name": f"{row['style'].title()} {row['color'].title()} {item_type.title()}",
             "category": item_type,
             "price": price,

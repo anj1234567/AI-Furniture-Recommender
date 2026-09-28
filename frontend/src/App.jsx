@@ -8,6 +8,8 @@ const box = { padding: '1rem', background: '#f5f5f5', borderRadius: 8, marginBot
 
 export default function App() {
   const [photo, setPhoto] = useState(null)
+  const [preview, setPreview] = useState(null)
+  const [imgSize, setImgSize] = useState(null)
   const [budget, setBudget] = useState('')
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -27,9 +29,16 @@ export default function App() {
 
     try {
       const res = await fetch(`${API_URL}/analyze`, { method: 'POST', body: formData })
-      if (!res.ok) throw new Error(`Request failed: ${res.status}`)
+      if (!res.ok) {
+        let msg = `Request failed: ${res.status}`
+        try { const j = await res.json(); if (j.detail) msg = j.detail } catch { /* keep default */ }
+        throw new Error(msg)
+      }
+      setPreview(URL.createObjectURL(photo))
+      setImgSize(null)
       setResult(await res.json())
     } catch (err) {
+      setResult(null)
       setError(err.message)
     } finally {
       setLoading(false)
@@ -38,9 +47,10 @@ export default function App() {
 
   const p = result?.perception
   const items = result?.recommendation.selected_items ?? []
+  const minConf = result?.gap_analysis.min_confidence ?? 0.6
 
   return (
-    <div style={{ maxWidth: 720, margin: '2rem auto', fontFamily: 'sans-serif' }}>
+    <div style={{ maxWidth: 760, margin: '2rem auto', fontFamily: 'sans-serif' }}>
       <h1>AI Furniture Recommender</h1>
 
       <form onSubmit={handleSubmit}>
@@ -63,13 +73,52 @@ export default function App() {
         <div style={{ marginTop: '2rem' }}>
           <h2>1. What we found in your room</h2>
           <div style={box}>
-            <strong>Detected furniture:</strong>{' '}
-            {p.detections.length === 0
-              ? 'none of the catalog furniture types'
-              : p.detections.map((d) => {
-                  const low = d.confidence < result.gap_analysis.min_confidence
-                  return `${d.label} (${Math.round(d.confidence * 100)}%${low ? ', low confidence, not counted' : ''})`
-                }).join(', ')}
+            {/* Uploaded photo with detection boxes drawn on it */}
+            <div style={{ position: 'relative', display: 'inline-block', maxWidth: '100%' }}>
+              <img
+                src={preview}
+                alt="your room"
+                onLoad={(e) => setImgSize({ w: e.target.naturalWidth, h: e.target.naturalHeight })}
+                style={{ maxWidth: '100%', maxHeight: 340, display: 'block', borderRadius: 6 }}
+              />
+              {imgSize &&
+                p.detections.map((d, i) => {
+                  const low = d.confidence < minConf
+                  const [x1, y1, x2, y2] = d.bbox
+                  return (
+                    <div
+                      key={i}
+                      style={{
+                        position: 'absolute',
+                        left: `${(x1 / imgSize.w) * 100}%`,
+                        top: `${(y1 / imgSize.h) * 100}%`,
+                        width: `${((x2 - x1) / imgSize.w) * 100}%`,
+                        height: `${((y2 - y1) / imgSize.h) * 100}%`,
+                        border: `3px ${low ? 'dashed #f59e0b' : 'solid #16a34a'}`,
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                      <span style={{ background: low ? '#f59e0b' : '#16a34a', color: '#fff', fontSize: 12, padding: '1px 5px' }}>
+                        {d.label} {Math.round(d.confidence * 100)}%
+                      </span>
+                    </div>
+                  )
+                })}
+            </div>
+
+            {p.image_quality?.warnings.length > 0 && (
+              <div style={{ marginTop: '0.75rem', padding: '0.5rem 0.75rem', background: '#fef3c7', borderRadius: 6, fontSize: 14 }}>
+                {p.image_quality.warnings.map((w) => <div key={w}>⚠ {w}</div>)}
+              </div>
+            )}
+            <div style={{ marginTop: '0.75rem' }}>
+              <strong>Detected furniture:</strong>{' '}
+              {p.detections.length === 0
+                ? 'none of the catalog furniture types'
+                : p.detections
+                    .map((d) => `${d.label} (${Math.round(d.confidence * 100)}%${d.confidence < minConf ? ', low confidence, not counted' : ''})`)
+                    .join(', ')}
+            </div>
             <div style={{ marginTop: '0.75rem' }}>
               <strong>Dominant colours:</strong>
               <div style={{ display: 'flex', gap: 8, marginTop: 6 }}>
@@ -98,14 +147,18 @@ export default function App() {
           {items.length === 0 ? (
             <p>No item fits this budget. Try a higher budget.</p>
           ) : (
-            <ul>
-              {items.map((item) => (
-                <li key={item.item_id} style={{ marginBottom: '1rem' }}>
+            items.map((item) => (
+              <div key={item.item_id} style={{ ...box, display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                {item.image && (
+                  <img src={`${API_URL}${item.image}`} alt={item.name} width={120} height={120}
+                       style={{ objectFit: 'cover', borderRadius: 6, background: '#fff' }} />
+                )}
+                <div>
                   <strong>{item.name}</strong> — ₹{item.price} (match score {item.score})
-                  <p style={{ margin: '4px 0' }}>{item.explanation}</p>
-                </li>
-              ))}
-            </ul>
+                  <p style={{ margin: '4px 0 0' }}>{item.explanation}</p>
+                </div>
+              </div>
+            ))
           )}
 
           <h2>4. DP Optimal vs Greedy</h2>

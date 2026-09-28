@@ -22,7 +22,13 @@ import numpy as np
 from sklearn.cluster import KMeans
 from ultralytics import YOLO
 
+from .preprocess import assess_quality, enhance_if_dark
+
 STYLE_CONFIDENCE_THRESHOLD = 0.6
+
+# yolov8n = smallest/fastest. If detections look weak, try "yolov8s.pt" or "yolov8m.pt"
+# (bigger = more accurate, slower, auto-downloads on first run).
+YOLO_MODEL = "yolov8n.pt"
 
 # COCO classes relevant to furniture/interior. Full list:
 # https://docs.ultralytics.com/datasets/detect/coco/
@@ -34,7 +40,7 @@ _model = None  # loaded lazily so importing this file doesn't trigger a download
 def _get_model():
     global _model
     if _model is None:
-        _model = YOLO("yolov8n.pt")  # auto-downloads on first run (~6MB)
+        _model = YOLO(YOLO_MODEL)  # auto-downloads on first run
     return _model
 
 
@@ -51,10 +57,15 @@ def analyze_room(image_path: str) -> dict:
     image_bgr = cv2.imread(image_path)
     if image_bgr is None:
         raise ValueError(f"Could not read image at {image_path}")
-    image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
     h, w = image_bgr.shape[:2]
 
-    results = _get_model()(image_bgr, verbose=False)[0]
+    # Layer 1 (ingestion/preprocessing): check quality, brighten dark photos.
+    # Size never changes, so bounding boxes stay valid for the original photo.
+    quality = assess_quality(image_bgr)
+    work_bgr = enhance_if_dark(image_bgr, quality)
+    image_rgb = cv2.cvtColor(work_bgr, cv2.COLOR_BGR2RGB)
+
+    results = _get_model()(work_bgr, verbose=False)[0]
     detections = []
     covered_area = 0
     for box in results.boxes:
@@ -83,4 +94,5 @@ def analyze_room(image_path: str) -> dict:
         "dominant_colors": dominant_colors,
         "style": {"label": "unclassified", "confidence": style_confidence},
         "needs_confirmation": style_confidence < STYLE_CONFIDENCE_THRESHOLD,
+        "image_quality": quality,
     }
