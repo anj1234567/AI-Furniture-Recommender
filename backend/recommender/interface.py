@@ -225,16 +225,30 @@ DETECTION_TO_CATEGORY = {
 
 MIN_DETECTION_CONFIDENCE = 0.6  # below this, a detection is treated as uncertain
 
+# Large furniture must cover a reasonable share of the photo to count as "the room
+# has one". Small boxes are usually folded mattresses, cushions or bedding.
+# Heuristic: the real fix is fine-tuning the detector (final phase).
+MIN_AREA_RATIO = {"bed": 0.10, "sofa": 0.08}
 
-def find_missing_categories(catalog: List[Dict], detections: List[Dict],
-                            min_confidence: float = MIN_DETECTION_CONFIDENCE) -> List[str]:
-    """Catalog categories that the detector did NOT confidently find in the room.
-    Low-confidence detections (e.g. a mattress the COCO model calls a 'bed' at
-    54%) don't count as 'the room already has this'."""
+
+def classify_detection(d: Dict):
+    """Returns (counted, reason). counted=True means 'the room already has this'."""
+    category = DETECTION_TO_CATEGORY.get(d["label"])
+    if category is None:
+        return False, "not a catalog category"
+    if d["confidence"] < MIN_DETECTION_CONFIDENCE:
+        return False, "low confidence"
+    if d.get("area_ratio", 1.0) < MIN_AREA_RATIO.get(category, 0.0):
+        return False, f"too small to be a full {category}"
+    return True, None
+
+
+def find_missing_categories(catalog: List[Dict], detections: List[Dict]) -> List[str]:
+    """Catalog categories the detector did NOT reliably find in the room."""
     present = {
         DETECTION_TO_CATEGORY[d["label"]]
         for d in detections
-        if d["label"] in DETECTION_TO_CATEGORY and d["confidence"] >= min_confidence
+        if classify_detection(d)[0]
     }
     all_categories = {item["category"].lower() for item in catalog}
     return sorted(all_categories - present)

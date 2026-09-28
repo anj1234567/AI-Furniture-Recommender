@@ -78,6 +78,7 @@ def analyze_room(image_path: str) -> dict:
             "label": label,
             "bbox": [round(x1), round(y1), round(x2), round(y2)],
             "confidence": round(confidence, 2),
+            "area_ratio": round(((x2 - x1) * (y2 - y1)) / (w * h), 3),  # share of the photo the box covers
         })
         covered_area += (x2 - x1) * (y2 - y1)
 

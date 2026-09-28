@@ -83,7 +83,7 @@ export default function App() {
               />
               {imgSize &&
                 p.detections.map((d, i) => {
-                  const low = d.confidence < minConf
+                  const low = !d.counted
                   const [x1, y1, x2, y2] = d.bbox
                   return (
                     <div
@@ -116,7 +116,7 @@ export default function App() {
               {p.detections.length === 0
                 ? 'none of the catalog furniture types'
                 : p.detections
-                    .map((d) => `${d.label} (${Math.round(d.confidence * 100)}%${d.confidence < minConf ? ', low confidence, not counted' : ''})`)
+                    .map((d) => `${d.label} (${Math.round(d.confidence * 100)}%${d.counted ? '' : `, ${d.not_counted_reason || 'not counted'}, not counted`})`)
                     .join(', ')}
             </div>
             <div style={{ marginTop: '0.75rem' }}>

@@ -19,7 +19,7 @@ from perception.interface import analyze_room
 from perception.preprocess import REJECT_FLAT_RATIO
 from recommender.interface import (
     recommend, find_missing_categories, filter_to_missing, MIN_DETECTION_CONFIDENCE,
-    unmapped_colors,
+    unmapped_colors, classify_detection,
 )
 from explainability.interface import explain
 from store_locator.interface import find_stores
@@ -91,6 +91,10 @@ async def analyze(
             detail="This doesn't look like a room photo (it looks like a screenshot or graphic). "
                    "Please upload a photo of a room.",
         )
+
+    # Decide which detections count as "the room already has this".
+    for d in perception_result["detections"]:
+        d["counted"], d["not_counted_reason"] = classify_detection(d)
 
     # Gap analysis: only recommend categories the room is missing.
     missing = find_missing_categories(CATALOG, perception_result["detections"])
