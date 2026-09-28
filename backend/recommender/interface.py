@@ -98,7 +98,8 @@ def solve_dp(items_by_category: Dict[str, List[Dict]], budget: float) -> List[Di
             for item in items:
                 price = int(item["price"])
                 if price <= b:
-                    candidate = dp[i - 1][b - price] + item["_score"]
+                    # tiny price penalty: among equal scores, prefer the cheaper option
+                    candidate = dp[i - 1][b - price] + item["_score"] - price * 1e-9
                     if candidate > dp[i][b]:
                         dp[i][b] = candidate
                         choice[i][b] = item
@@ -180,3 +181,42 @@ def recommend(
         "compatibility_score": avg_score,
         "method": method,
     }
+
+
+# ---------------------------------------------------------------------------
+# Gap analysis: use what perception detected to avoid recommending furniture
+# the room already has.
+# ---------------------------------------------------------------------------
+
+# COCO/YOLO label -> catalog category name
+DETECTION_TO_CATEGORY = {
+    "chair": "chair",
+    "couch": "sofa",
+    "bed": "bed",
+    "dining table": "table",
+}
+
+
+MIN_DETECTION_CONFIDENCE = 0.6  # below this, a detection is treated as uncertain
+
+
+def find_missing_categories(catalog: List[Dict], detections: List[Dict],
+                            min_confidence: float = MIN_DETECTION_CONFIDENCE) -> List[str]:
+    """Catalog categories that the detector did NOT confidently find in the room.
+    Low-confidence detections (e.g. a mattress the COCO model calls a 'bed' at
+    54%) don't count as 'the room already has this'."""
+    present = {
+        DETECTION_TO_CATEGORY[d["label"]]
+        for d in detections
+        if d["label"] in DETECTION_TO_CATEGORY and d["confidence"] >= min_confidence
+    }
+    all_categories = {item["category"].lower() for item in catalog}
+    return sorted(all_categories - present)
+
+
+def filter_to_missing(catalog: List[Dict], missing: List[str]) -> List[Dict]:
+    """Keep only items whose category the room is missing. If the room already
+    has everything in the catalog, return the full catalog (upgrade mode)."""
+    if not missing:
+        return catalog
+    return [item for item in catalog if item["category"].lower() in missing]

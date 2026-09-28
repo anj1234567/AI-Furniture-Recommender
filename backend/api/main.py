@@ -15,7 +15,9 @@ import os
 import json
 
 from perception.interface import analyze_room
-from recommender.interface import recommend
+from recommender.interface import (
+    recommend, find_missing_categories, filter_to_missing, MIN_DETECTION_CONFIDENCE,
+)
 from explainability.interface import explain
 from store_locator.interface import find_stores
 from db import init_db
@@ -70,25 +72,52 @@ async def analyze(
 
     perception_result = analyze_room(photo_path)
 
-    rec_result = recommend(
-        style=perception_result["style"]["label"],
-        palette=perception_result["dominant_colors"],
-        budget=budget,
-        catalog=CATALOG,
-    )
+    # Gap analysis: only recommend categories the room is missing.
+    missing = find_missing_categories(CATALOG, perception_result["detections"])
+    candidate_catalog = filter_to_missing(CATALOG, missing)
+    upgrade_mode = len(missing) == 0  # room already has every catalog category
+
+    style = perception_result["style"]["label"]
+    palette = perception_result["dominant_colors"]
+
+    rec_result = recommend(style=style, palette=palette, budget=budget,
+                           catalog=candidate_catalog, method="dp_optimal")
+    greedy_result = recommend(style=style, palette=palette, budget=budget,
+                              catalog=candidate_catalog, method="greedy")
 
     room_context = {
-        "style": perception_result["style"]["label"],
-        "dominant_colors": perception_result["dominant_colors"],
+        "style": style,
+        "dominant_colors": palette,
         "budget": budget,
+        "missing_categories": missing,
     }
+    catalog_by_id = {item["id"]: item for item in CATALOG}
     for item in rec_result["selected_items"]:
-        item["explanation"] = explain(item, room_context)
+        full = {**catalog_by_id.get(item["item_id"], {}), **item}
+        item["name"] = full.get("name", item["category"])
+        item["explanation"] = explain(full, room_context)
         item["nearby_stores"] = find_stores(item["category"], lat, lng)
 
     return {
         "perception": perception_result,
         "recommendation": rec_result,
+        "gap_analysis": {
+            "missing_categories": missing,
+            "upgrade_mode": upgrade_mode,
+            "min_confidence": MIN_DETECTION_CONFIDENCE,
+        },
+        "comparison": {
+            "dp_optimal": {
+                "total_price": rec_result["total_price"],
+                "total_score": round(sum(i["score"] for i in rec_result["selected_items"]), 3),
+                "items": len(rec_result["selected_items"]),
+            },
+            "greedy": {
+                "total_price": greedy_result["total_price"],
+                "total_score": round(sum(i["score"] for i in greedy_result["selected_items"]), 3),
+                "items": len(greedy_result["selected_items"]),
+            },
+        },
     }
 
 

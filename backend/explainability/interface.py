@@ -1,31 +1,43 @@
 """
 Track B owns this file.
 
-Contract: see docs/CONTRACTS.md section 3.
-
-Real implementation: either a rule-based template over the same features used
-in recommender scoring (colour match, style match, space fit, budget fit), or
-a lightweight LLM call constrained to those same features. Rule-based is
-simpler to demo reliably for a review — start there.
+Rule-based explanations built from the real signals the recommender used:
+gap in the room, style match, colour match, and share of budget.
 """
 
 from typing import Dict
+from recommender.interface import _nearest_color_name
 
 
 def explain(item: Dict, room_context: Dict) -> str:
     """
-    MOCK IMPLEMENTATION — replace with rule-based template or constrained LLM call.
-
     Args:
-        item: one entry from recommender.recommend()'s selected_items, merged
-              with its full catalog record (name, style_tags, color_tags, price).
-        room_context: {"style": ..., "dominant_colors": [...], "budget": ...}
-              — the perception output plus the user's stated budget.
+        item: selected item merged with its catalog record
+              (category, price, score, style_tags, color_tags).
+        room_context: {"style", "dominant_colors", "budget", "missing_categories"}
 
     Returns:
-        A single short human-readable sentence.
+        One human-readable sentence built from the real match signals.
     """
-    return (
-        f"Selected for its match with your room's {room_context.get('style', 'detected')} "
-        f"style and colour palette, and it fits within your remaining budget."
-    )
+    reasons = []
+    category = item.get("category", "item")
+
+    if category.lower() in room_context.get("missing_categories", []):
+        reasons.append(f"your room has no {category} yet")
+
+    style = room_context.get("style", "unclassified")
+    style_tags = [t.lower() for t in item.get("style_tags", [])]
+    if style != "unclassified" and style.lower() in style_tags:
+        reasons.append(f"its {style} style matches your room")
+
+    palette_names = [_nearest_color_name(h) for h in room_context.get("dominant_colors", [])]
+    matched = [c for c in item.get("color_tags", []) if c.lower() in palette_names]
+    if matched:
+        reasons.append(f"its {', '.join(matched)} colour matches your room's palette")
+
+    budget = room_context.get("budget") or 0
+    price = item.get("price", 0)
+    if budget > 0:
+        reasons.append(f"it costs \u20b9{int(price)}, {round(100 * price / budget)}% of your budget")
+
+    return "Recommended because " + "; ".join(reasons) + "."
