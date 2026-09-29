@@ -6,7 +6,7 @@ gap in the room, style match, colour match, and share of budget.
 """
 
 from typing import Dict
-from recommender.interface import matching_colors
+from recommender.interface import matching_colors, style_matches, room_matches, _no_choice
 
 
 def explain(item: Dict, room_context: Dict) -> str:
@@ -14,7 +14,7 @@ def explain(item: Dict, room_context: Dict) -> str:
     Args:
         item: selected item merged with its catalog record
               (category, price, score, style_tags, color_tags).
-        room_context: {"style", "dominant_colors", "budget", "missing_categories"}
+        room_context: {"style", "dominant_colors", "budget", "missing_categories", "room_type"}
 
     Returns:
         One human-readable sentence built from the real match signals.
@@ -26,9 +26,12 @@ def explain(item: Dict, room_context: Dict) -> str:
         reasons.append(f"your room has no {category} yet")
 
     style = room_context.get("style", "unclassified")
-    style_tags = [t.lower() for t in item.get("style_tags", [])]
-    if style != "unclassified" and style.lower() in style_tags:
-        reasons.append(f"its {style} style matches your room")
+    if not _no_choice(style) and style_matches(item, style):
+        reasons.append(f"its {', '.join(item.get('style_tags', []))} style matches your {style} room")
+
+    room_type = room_context.get("room_type")
+    if not _no_choice(room_type) and room_matches(item, room_type):
+        reasons.append(f"it is designed for a {item.get('room_type')} space, which suits your {room_type}")
 
     matched = matching_colors(item.get("color_tags", []), room_context.get("dominant_colors", []))
     if matched:

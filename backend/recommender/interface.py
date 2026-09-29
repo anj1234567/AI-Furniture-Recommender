@@ -14,9 +14,15 @@ Scoring (rule-based, matches the Explainability layer's simplicity):
   classifier yet), style_score is neutral (0.5) for every item, so the
   optimizer falls back to optimizing on colour + budget alone -- still a
   real, working algorithm, just without the style signal yet.
-- color_score = fraction of the item's color_tags that appear in the
-  room's dominant colours (mapped from hex to named colours).
-- total = 0.6 * style_score + 0.4 * color_score
+- color_score = how close the item's colours are to the colours found in the
+  room photo (continuous 0..1, RGB distance).
+- room_score = 1.0 if the item's room_type suits the room type the user
+  picked, else 0.2. Neutral (0.5) if the user didn't pick one. It is a soft
+  bonus, not a filter, because the catalog doesn't have every category for
+  every room type.
+- style can come from the user's pick (see STYLE_GROUPS) until the trained
+  style classifier exists.
+- total = 0.45 * style_score + 0.35 * color_score + 0.20 * room_score
 """
 
 from typing import List, Dict, Optional
@@ -43,7 +49,72 @@ _NAMED_COLORS = {
     "green": (34, 139, 34), "olive": (107, 142, 35), "sage": (156, 175, 136), "mint": (152, 200, 170),
     "emerald": (20, 130, 90), "red": (178, 34, 34), "maroon": (128, 0, 0), "burgundy": (128, 0, 32),
     "coral": (240, 128, 110), "pink": (255, 182, 193), "purple": (102, 51, 153), "lavender": (180, 160, 220),
+    # extra names found in the real catalog
+    "amber": (255, 191, 0), "ash": (178, 190, 181), "azure": (0, 127, 255), "blush": (222, 159, 171),
+    "brass": (181, 166, 66), "chrome": (200, 200, 205), "cognac": (154, 70, 30), "concrete": (149, 149, 149),
+    "crimson": (220, 20, 60), "crystal": (220, 235, 240), "graphite": (56, 56, 60), "marble": (235, 235, 232),
+    "mauve": (176, 131, 153), "obsidian": (20, 20, 25), "ochre": (204, 119, 34), "onyx": (53, 56, 57),
+    "pearl": (234, 224, 200), "plum": (142, 69, 133), "ruby": (155, 17, 30), "sapphire": (15, 82, 186),
+    "steel": (110, 120, 130), "terra": (204, 100, 70), "titanium": (135, 134, 129),
 }
+
+
+# ---------------------------------------------------------------------------
+# User-selectable style and room type.
+# The catalog has 37 fine-grained style tags (nordic, minimal, deco, ...).
+# The user picks a broad style; each broad style groups the catalog tags
+# that belong to it. Until the style classifier is trained, this pick is
+# where the room style comes from.
+# ---------------------------------------------------------------------------
+STYLE_GROUPS = {
+    "modern": {"modern", "minimal", "minimalist", "streamline", "futuristic", "hightech"},
+    "scandinavian": {"scandinavian", "nordic", "minimal", "minimalist"},
+    "industrial": {"industrial", "brutalist", "hightech", "architectural"},
+    "bohemian": {"bohemian", "eclectic", "organic", "biomorphic"},
+    "traditional": {"traditional", "classic", "classical", "victorian", "baroque", "colonial", "provincial", "gothic"},
+    "coastal": {"coastal", "organic"},
+    "rustic": {"rustic", "primitive", "provincial"},
+    "japanese": {"japanese", "zen", "minimal", "minimalist"},
+    "retro": {"retro", "deco", "postmodern", "bauhaus", "italian"},
+}
+
+# Broad room type -> catalog room_type values that suit it.
+ROOM_GROUPS = {
+    "bedroom": {"master", "bedroom", "guest", "suite", "dorm", "loft", "studio"},
+    "living": {"living", "lounge", "theater", "penthouse", "lobby", "library", "vacation"},
+    "dining": {"dining", "kitchen", "cafe"},
+    "study": {"study", "office", "library", "conference", "gaming"},
+    "kids": {"kids", "nursery"},
+    "outdoor": {"outdoor", "vacation"},
+}
+
+STYLE_OPTIONS = [{"value": k, "label": k.title()} for k in STYLE_GROUPS]
+ROOM_OPTIONS = [
+    {"value": "bedroom", "label": "Bedroom"},
+    {"value": "living", "label": "Living room"},
+    {"value": "dining", "label": "Dining / Kitchen"},
+    {"value": "study", "label": "Study / Office"},
+    {"value": "kids", "label": "Kids room"},
+    {"value": "outdoor", "label": "Outdoor"},
+]
+
+
+def _no_choice(value) -> bool:
+    return value is None or str(value).strip().lower() in ("", "unclassified", "auto", "any")
+
+
+def style_matches(item: Dict, style: str) -> bool:
+    """True if the item's style tags belong to the chosen style."""
+    tags = {t.lower() for t in item.get("style_tags", [])}
+    s = str(style).strip().lower()
+    return bool(tags & STYLE_GROUPS.get(s, {s}))
+
+
+def room_matches(item: Dict, room_type: str) -> bool:
+    """True if the item's catalog room_type suits the chosen room type."""
+    rt = str(item.get("room_type") or "").lower()
+    r = str(room_type).strip().lower()
+    return rt in ROOM_GROUPS.get(r, {r})
 
 
 def _hex_to_rgb(hex_color: str):
@@ -80,15 +151,11 @@ def _color_score(color_tags: List[str], palette_rgb: List[tuple]) -> float:
     return sum(scores) / len(scores)
 
 
-def _score_item(item: Dict, style: str, palette_rgb: List[tuple]) -> float:
-    if style == "unclassified":
-        style_score = 0.5
-    else:
-        tags = [t.lower() for t in item.get("style_tags", [])]
-        style_score = 1.0 if style.lower() in tags else 0.2
-
+def _score_item(item: Dict, style: str, palette_rgb: List[tuple], room_type: Optional[str] = None) -> float:
+    style_score = 0.5 if _no_choice(style) else (1.0 if style_matches(item, style) else 0.2)
+    room_score = 0.5 if _no_choice(room_type) else (1.0 if room_matches(item, room_type) else 0.2)
     color_score = _color_score(item.get("color_tags", []), palette_rgb)
-    return round(0.6 * style_score + 0.4 * color_score, 3)
+    return round(0.45 * style_score + 0.35 * color_score + 0.2 * room_score, 3)
 
 
 def _group_by_category(catalog: List[Dict]) -> Dict[str, List[Dict]]:
@@ -109,35 +176,53 @@ def solve_dp(items_by_category: Dict[str, List[Dict]], budget: float) -> List[Di
     catalog prices in this range; round to a coarser unit (e.g. //10) first
     if you need this faster on a much larger catalog.
     """
+    from math import gcd
+    from functools import reduce
+
     budget = int(budget)
     categories = list(items_by_category.keys())
     n = len(categories)
 
-    dp = [[0.0] * (budget + 1) for _ in range(n + 1)]
-    choice = [[None] * (budget + 1) for _ in range(n + 1)]
+    # Exact speed-up: all prices are multiples of their gcd (e.g. 1000), so
+    # the DP table can count in that unit. Within one category, only the
+    # best-scoring item at each price can ever matter.
+    prices = [int(it["price"]) for items in items_by_category.values() for it in items]
+    unit = reduce(gcd, prices) if prices else 1
+    unit = max(unit, 1)
+    cap = budget // unit
+    reduced = {}
+    for cat in categories:
+        best = {}
+        for item in items_by_category[cat]:
+            p = int(item["price"]) // unit
+            if p not in best or item["_score"] > best[p]["_score"]:
+                best[p] = item
+        reduced[cat] = list(best.items())  # (price_in_units, item)
+
+    dp = [[0.0] * (cap + 1) for _ in range(n + 1)]
+    choice = [[None] * (cap + 1) for _ in range(n + 1)]
 
     for i, cat in enumerate(categories, start=1):
-        items = items_by_category[cat]
-        for b in range(budget + 1):
+        for b in range(cap + 1):
             dp[i][b] = dp[i - 1][b]  # option: skip this category entirely
             choice[i][b] = None
-            for item in items:
-                price = int(item["price"])
+            for price, item in reduced[cat]:
                 if price <= b:
                     # tiny price penalty: among equal scores, prefer the cheaper option
-                    candidate = dp[i - 1][b - price] + item["_score"] - price * 1e-9
+                    candidate = dp[i - 1][b - price] + item["_score"] - price * unit * 1e-9
                     if candidate > dp[i][b]:
                         dp[i][b] = candidate
-                        choice[i][b] = item
+                        choice[i][b] = (price, item)
 
     # Backtrack to recover the selected items
     selected = []
-    b = budget
+    b = cap
     for i in range(n, 0, -1):
         picked = choice[i][b]
         if picked is not None:
-            selected.append(picked)
-            b -= int(picked["price"])
+            price, item = picked
+            selected.append(item)
+            b -= price
     return selected
 
 
@@ -165,6 +250,7 @@ def recommend(
     budget: float,
     catalog: List[Dict],
     method: str = "dp_optimal",
+    room_type: Optional[str] = None,
 ) -> dict:
     """
     Real recommender. See docs/CONTRACTS.md section 3 for the return shape.
@@ -176,6 +262,7 @@ def recommend(
         budget: user's total stated budget.
         catalog: list of catalog items (docs/CONTRACTS.md section 2).
         method: "dp_optimal" (default) or "greedy" -- for the Phase 3 comparison.
+        room_type: optional broad room type picked by the user (see ROOM_GROUPS).
     """
     if not catalog:
         return {"selected_items": [], "total_price": 0, "compatibility_score": 0, "method": method}
@@ -186,7 +273,7 @@ def recommend(
     scored_catalog = []
     for item in catalog:
         item = dict(item)  # don't mutate the caller's catalog
-        item["_score"] = _score_item(item, style, palette_rgb)
+        item["_score"] = _score_item(item, style, palette_rgb, room_type)
         scored_catalog.append(item)
 
     items_by_category = _group_by_category(scored_catalog)

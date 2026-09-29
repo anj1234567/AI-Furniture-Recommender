@@ -19,7 +19,7 @@ from perception.interface import analyze_room
 from perception.preprocess import REJECT_FLAT_RATIO
 from recommender.interface import (
     recommend, find_missing_categories, filter_to_missing, MIN_DETECTION_CONFIDENCE,
-    unmapped_colors, classify_detection,
+    unmapped_colors, classify_detection, STYLE_OPTIONS, ROOM_OPTIONS, _no_choice,
 )
 from explainability.interface import explain
 from store_locator.interface import find_stores
@@ -77,6 +77,8 @@ async def analyze(
     budget: float = Form(...),
     lat: float = Form(...),
     lng: float = Form(...),
+    style: str = Form(""),      # optional: style picked by the user
+    room_type: str = Form(""),  # optional: room type picked by the user
 ):
     """Full pipeline: upload -> perception -> recommend -> explain -> stores."""
     photo_path = os.path.join(UPLOAD_DIR, photo.filename)
@@ -101,30 +103,51 @@ async def analyze(
     candidate_catalog = filter_to_missing(CATALOG, missing)
     upgrade_mode = len(missing) == 0  # room already has every catalog category
 
-    style = perception_result["style"]["label"]
+    # Style: the user's pick wins. Until the style classifier is trained,
+    # the perception layer returns "unclassified", so this pick is the
+    # source of the style (docs/CONTRACTS.md: user confirmation flow).
+    if not _no_choice(style):
+        style_source = "user"
+    else:
+        style, style_source = perception_result["style"]["label"], "model"
+    room_type = None if _no_choice(room_type) else room_type
     palette = perception_result["dominant_colors"]
 
     rec_result = recommend(style=style, palette=palette, budget=budget,
-                           catalog=candidate_catalog, method="dp_optimal")
+                           catalog=candidate_catalog, method="dp_optimal", room_type=room_type)
     greedy_result = recommend(style=style, palette=palette, budget=budget,
-                              catalog=candidate_catalog, method="greedy")
+                              catalog=candidate_catalog, method="greedy", room_type=room_type)
 
     room_context = {
         "style": style,
         "dominant_colors": palette,
         "budget": budget,
         "missing_categories": missing,
+        "room_type": room_type,
     }
     catalog_by_id = {item["id"]: item for item in CATALOG}
     for item in rec_result["selected_items"]:
         full = {**catalog_by_id.get(item["item_id"], {}), **item}
         item["name"] = full.get("name", item["category"])
         item["image"] = full.get("image")
+        item["material"] = full.get("material")
+        item["item_room_type"] = full.get("room_type")
+        item["style_tags"] = full.get("style_tags", [])
+        item["color_tags"] = full.get("color_tags", [])
         item["explanation"] = explain(full, room_context)
         item["nearby_stores"] = find_stores(item["category"], lat, lng)
 
+    used = rec_result["total_price"]
     return {
         "perception": perception_result,
+        "style_used": {"label": style, "source": style_source},
+        "room_type_used": room_type,
+        "budget_summary": {
+            "budget": budget,
+            "used": used,
+            "left": budget - used,
+            "percent_used": round(100 * used / budget) if budget > 0 else 0,
+        },
         "recommendation": rec_result,
         "gap_analysis": {
             "missing_categories": missing,
@@ -144,6 +167,12 @@ async def analyze(
             },
         },
     }
+
+
+@app.get("/options")
+def options():
+    """Style and room-type choices for the frontend dropdowns."""
+    return {"styles": STYLE_OPTIONS, "room_types": ROOM_OPTIONS}
 
 
 @app.get("/health")
