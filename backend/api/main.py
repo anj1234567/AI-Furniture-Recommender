@@ -126,16 +126,24 @@ async def analyze(
         "room_type": room_type,
     }
     catalog_by_id = {item["id"]: item for item in CATALOG}
+
+    def decorate(entry):
+        """Add name, picture, material and explanation from the catalog."""
+        full = {**catalog_by_id.get(entry["item_id"], {}), **entry}
+        entry["name"] = full.get("name", entry["category"])
+        entry["image"] = full.get("image")
+        entry["material"] = full.get("material")
+        entry["item_room_type"] = full.get("room_type")
+        entry["style_tags"] = full.get("style_tags", [])
+        entry["color_tags"] = full.get("color_tags", [])
+        entry["explanation"] = explain(full, room_context)
+
     for item in rec_result["selected_items"]:
-        full = {**catalog_by_id.get(item["item_id"], {}), **item}
-        item["name"] = full.get("name", item["category"])
-        item["image"] = full.get("image")
-        item["material"] = full.get("material")
-        item["item_room_type"] = full.get("room_type")
-        item["style_tags"] = full.get("style_tags", [])
-        item["color_tags"] = full.get("color_tags", [])
-        item["explanation"] = explain(full, room_context)
+        decorate(item)
         item["nearby_stores"] = find_stores(item["category"], lat, lng)
+    for alts in rec_result["alternatives"].values():
+        for alt in alts:
+            decorate(alt)
 
     used = rec_result["total_price"]
     return {
