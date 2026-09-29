@@ -23,10 +23,19 @@ export default function App() {
   const [roomType, setRoomType] = useState('')
   const [options, setOptions] = useState({ styles: [], room_types: [] })
   const [over, setOver] = useState(false)
+  const [picks, setPicks] = useState({})        // category -> chosen item_id (user swaps)
+  const [openSwap, setOpenSwap] = useState(null) // category whose alternatives are open
+  const [coords, setCoords] = useState({ lat: 18.5204, lng: 73.8567, source: 'default (Pune)' })
   const fileRef = useRef(null)
 
   useEffect(() => {
     fetch(`${API_URL}/options`).then((r) => r.json()).then(setOptions).catch(() => {})
+    // Use the browser's location for nearby stores; keep the Pune default if denied.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude, source: 'your location' }),
+        () => {}, { timeout: 8000 })
+    }
   }, [])
 
   function pickFile(f) {
@@ -51,8 +60,8 @@ export default function App() {
     const fd = new FormData()
     fd.append('photo', photo)
     fd.append('budget', budget)
-    fd.append('lat', '18.5204') // Pune placeholder
-    fd.append('lng', '73.8567')
+    fd.append('lat', String(coords.lat))
+    fd.append('lng', String(coords.lng))
     fd.append('style', styleValue)
     fd.append('room_type', roomValue)
     try {
@@ -63,6 +72,8 @@ export default function App() {
         throw new Error(msg)
       }
       setImgSize(null)
+      setPicks({})
+      setOpenSwap(null)
       setResult(await res.json())
     } catch (err) {
       setResult(null)
@@ -74,12 +85,25 @@ export default function App() {
   }
 
   const p = result?.perception
-  const items = result?.recommendation.selected_items ?? []
-  const bs = result?.budget_summary
+  const optimal = result?.recommendation.selected_items ?? []
+  const alts = result?.recommendation.alternatives ?? {}
+  // The optimizer's pick per category, unless the user swapped it.
+  const items = optimal.map((o) => {
+    const chosenId = picks[o.category]
+    if (!chosenId || chosenId === o.item_id) return { ...o, swapped: false }
+    const a = (alts[o.category] ?? []).find((x) => x.item_id === chosenId)
+    return a ? { ...a, nearby_stores: o.nearby_stores, swapped: true } : { ...o, swapped: false }
+  })
+  const used = items.reduce((t, i) => t + i.price, 0)
+  const totalScore = items.reduce((t, i) => t + i.score, 0)
+  const anySwapped = items.some((i) => i.swapped)
+  const bs = result ? {
+    budget: result.budget_summary.budget, used, left: result.budget_summary.budget - used,
+    percent_used: result.budget_summary.budget > 0 ? Math.round((100 * used) / result.budget_summary.budget) : 0,
+  } : null
   const dp = result?.comparison.dp_optimal
   const gr = result?.comparison.greedy
-  const maxScore = Math.max(1, ...items.map((i) => i.score))
-
+  
   return (
     <div className="app">
       <div className="header">
@@ -239,7 +263,7 @@ export default function App() {
 
               {/* 3. Picks */}
               <div className="section">
-                <h2><span className="num">3</span>Optimal picks within {inr(budget)}</h2>
+                <h2><span className="num">3</span>Picks within {inr(budget)}</h2>
                 {bs && (
                   <div className="card">
                     <div className="budget-top">
@@ -247,15 +271,28 @@ export default function App() {
                       <span><b>{inr(bs.left)}</b> left</span>
                     </div>
                     <div className="bar"><div style={{ width: `${Math.min(100, bs.percent_used)}%` }} /></div>
-                    <div className="hint">The optimizer picks the best-matching set; it doesn't try to spend the whole budget.</div>
+                    <div className="hint">
+                      Total match score of this set: <b>{totalScore.toFixed(3)}</b>. The optimizer picks the best-matching set; it doesn't try to spend the whole budget.
+                    </div>
+                    {anySwapped && (
+                      <div className="hint" style={{ color: 'var(--warn)' }}>
+                        You swapped some items, so this set is no longer the DP-optimal one.{' '}
+                        <button type="button" className="linkbtn" onClick={() => setPicks({})}>Reset to optimal</button>
+                      </div>
+                    )}
                   </div>
                 )}
                 {items.length === 0 ? (
                   <div className="card" style={{ marginTop: 14 }}>No item fits this budget. Try a higher budget.</div>
                 ) : (
                   <div className="grid">
-                    {items.map((item) => (
-                      <div key={item.item_id} className="card prod">
+                    {items.map((item) => {
+                      const options = alts[item.category] ?? []
+                      const orig = optimal.find((o) => o.category === item.category)
+                      // other choices for this category, including the optimizer's own pick
+                      const choices = [orig, ...options].filter((c) => c.item_id !== item.item_id)
+                      return (
+                      <div key={item.category} className="card prod">
                         <div className="pic">
                           <span className="pill">{item.category}</span>
                           {item.image && <img src={`${API_URL}${item.image}`} alt={item.name} />}
@@ -265,8 +302,8 @@ export default function App() {
                           <div className="row">
                             <span className="price">{inr(item.price)}</span>
                             <div className="match">
-                              Match {Math.round((item.score / maxScore) * 100)}%
-                              <div className="mbar"><div style={{ width: `${(item.score / maxScore) * 100}%` }} /></div>
+                              Match {Math.round(item.score * 100)}%
+                              <div className="mbar"><div style={{ width: `${item.score * 100}%` }} /></div>
                             </div>
                           </div>
                           <div className="meta">
@@ -274,9 +311,53 @@ export default function App() {
                               .filter(Boolean).join(' · ')}
                           </div>
                           <div className="why">{item.explanation}</div>
+
+                          {choices.length > 0 && (
+                            <button type="button" className="swapbtn"
+                                    onClick={() => setOpenSwap(openSwap === item.category ? null : item.category)}>
+                              ⇄ {openSwap === item.category ? 'Hide alternatives' : `Swap (${choices.length} alternatives)`}
+                            </button>
+                          )}
+                          {openSwap === item.category && (
+                            <div className="alts">
+                              {choices.map((c) => {
+                                const fits = used - item.price + c.price <= bs.budget
+                                return (
+                                  <button type="button" key={c.item_id} className="alt" disabled={!fits}
+                                          title={fits ? 'Use this item' : 'Would go over your budget'}
+                                          onClick={() => { setPicks({ ...picks, [item.category]: c.item_id }); setOpenSwap(null) }}>
+                                    <div className="altpic">{c.image && <img src={`${API_URL}${c.image}`} alt={c.name} />}</div>
+                                    <div className="altinfo">
+                                      <b>{c.name}{c.item_id === orig.item_id ? ' · optimal pick' : ''}</b>
+                                      <span>{inr(c.price)} · match {Math.round(c.score * 100)}%</span>
+                                      {!fits && <span className="over">over budget</span>}
+                                    </div>
+                                  </button>
+                                )
+                              })}
+                            </div>
+                          )}
+
+                          {item.nearby_stores?.length > 0 && (
+                            <div className="stores">
+                              <p className="sub">Buy nearby</p>
+                              {item.nearby_stores.map((st) => (
+                                <a key={st.name + st.map_url} className="store" href={st.map_url} target="_blank" rel="noreferrer">
+                                  <span className="sname">{st.name}</span>
+                                  <span className="smeta">
+                                    {st.distance_km != null && `${st.distance_km} km`}
+                                    {st.rating != null && ` · ★ ${st.rating}`}
+                                    {st.source === 'sample' && 'sample data (Google not connected)'}
+                                  </span>
+                                  {st.address && <span className="saddr">{st.address}</span>}
+                                </a>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
-                    ))}
+                      )
+                    })}
                   </div>
                 )}
               </div>

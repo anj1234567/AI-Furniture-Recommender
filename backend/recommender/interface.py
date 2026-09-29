@@ -99,6 +99,9 @@ ROOM_OPTIONS = [
 ]
 
 
+MAX_ALTERNATIVES = 3  # swap options shown per category
+
+
 def _no_choice(value) -> bool:
     return value is None or str(value).strip().lower() in ("", "unclassified", "auto", "any")
 
@@ -288,8 +291,28 @@ def recommend(
     total_price = sum(it["price"] for it in selected_items)
     avg_score = round(sum(it["score"] for it in selected_items) / len(selected_items), 3) if selected_items else 0
 
+    # Top alternatives per chosen category, so the user can swap an item.
+    # Only items that individually fit the budget; near-duplicate names skipped.
+    alternatives = {}
+    for sel in picked:
+        cat = sel["category"]
+        pool = sorted(
+            (it for it in items_by_category[cat] if it["id"] != sel["id"] and it["price"] <= budget),
+            key=lambda it: (-it["_score"], it["price"]),
+        )
+        seen, alts = {sel.get("name")}, []
+        for it in pool:
+            if it.get("name") in seen:
+                continue
+            seen.add(it.get("name"))
+            alts.append({"item_id": it["id"], "category": cat, "score": it["_score"], "price": it["price"]})
+            if len(alts) == MAX_ALTERNATIVES:
+                break
+        alternatives[cat] = alts
+
     return {
         "selected_items": selected_items,
+        "alternatives": alternatives,
         "total_price": total_price,
         "compatibility_score": avg_score,
         "method": method,

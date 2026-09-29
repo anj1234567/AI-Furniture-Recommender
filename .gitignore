@@ -18,3 +18,5 @@ backend/uploads/
 *.pt
 
 data/images/
+
+.env
