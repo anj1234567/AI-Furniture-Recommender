@@ -9,6 +9,7 @@ import numpy as np
 
 from .depth import predict_depth, room_size_from_depth, LONG_SIDE_FOV_DEG
 from .floor import fit_floor, ceiling_height, DEFAULT_CAM_HEIGHT
+from .mesh import depth_grid
 
 _cache = {}
 
@@ -29,7 +30,7 @@ def _camera(w, h, up_cv, cam_h, source, ratio=None, ceiling=None):
 
 
 def analyze_scene(image_path: str) -> dict:
-    """Never raises. Returns {"room": {...}|None, "camera": {...}}."""
+    """Never raises. Returns {"room": {...}|None, "camera": {...}, "mesh": {...}|None}."""
     import cv2
     bgr = cv2.imread(image_path)
     if bgr is None:
@@ -39,17 +40,19 @@ def analyze_scene(image_path: str) -> dict:
     if key in _cache:
         return _cache[key]
 
-    fallback = {"room": None, "camera": _camera(w, h, [0, -1, 0], DEFAULT_CAM_HEIGHT, "assumed")}
+    fallback = {"room": None, "mesh": None, "camera": _camera(w, h, [0, -1, 0], DEFAULT_CAM_HEIGHT, "assumed")}
     try:
         depth = predict_depth(cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB))
         room = room_size_from_depth(depth)
         fl = fit_floor(depth, LONG_SIDE_FOV_DEG)
         if fl:
             ceil = ceiling_height(depth, LONG_SIDE_FOV_DEG, fl["up"], fl["cam_height_m"])
+            if ceil is None or not (2.3 <= ceil <= 3.6):   # depth from one photo is unreliable up there
+                ceil = 2.7
             cam = _camera(w, h, fl["up"], fl["cam_height_m"], "depth", fl["inlier_ratio"], ceil)
         else:
             cam = fallback["camera"]
-        result = {"room": room, "camera": cam}
+        result = {"room": room, "camera": cam, "mesh": depth_grid(depth)}
     except Exception as e:                      # depth model missing / offline / etc.
         print(f"[space.scene] depth analysis skipped: {e}")
         result = fallback
