@@ -11,9 +11,12 @@ mocked. As each remaining piece lands, this file doesn't need to change
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 import shutil
 import os
+import re
 import json
+import urllib.request
 
 from perception.interface import analyze_room
 from perception.preprocess import REJECT_FLAT_RATIO
@@ -24,15 +27,16 @@ from recommender.interface import (
 )
 from explainability.interface import explain
 from recommender.interface import DETECTION_TO_CATEGORY
+from recommender.quality import clean_catalog
 from store_locator.interface import find_stores
 from db import init_db
-from space.depth import estimate_room_size
+from space.scene import analyze_scene
 
 app = FastAPI(title="AI Furniture Recommender")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Vite dev server default
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],  # Vite dev server default
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -57,7 +61,8 @@ CATALOG_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "data", "cata
 try:
     with open(CATALOG_PATH) as f:
         CATALOG = json.load(f)
-    print(f"Loaded real catalog: {len(CATALOG)} items")
+    CATALOG, _dropped = clean_catalog(CATALOG)
+    print(f"Loaded real catalog: {len(CATALOG)} items ({_dropped} removed: folding tables, TV units, office chairs, bad sizes...)")
 except FileNotFoundError:
     print("data/catalog.json not found -- using small mock catalog. "
           "Run data/prepare_catalog.py to generate the real one.")
@@ -123,12 +128,11 @@ async def analyze(
     # Floor space: from the size the user typed, otherwise estimated from the photo
     # (depth model). If neither works, the floor-space check is skipped.
     space, room_dims, space_m2, space_source = None, None, None, None
+    scene = analyze_scene(photo_path)          # one depth pass: room size, floor plane, ceiling
     if room_width_m > 0 and room_length_m > 0:
         space_source = "user"
-    else:
-        est = estimate_room_size(photo_path)
-        if est:
-            room_width_m, room_length_m, space_source = est["width_m"], est["length_m"], "estimated"
+    elif scene["room"]:
+        room_width_m, room_length_m, space_source = scene["room"]["width_m"], scene["room"]["length_m"], "estimated"
     if space_source:
         present = {DETECTION_TO_CATEGORY[d["label"]] for d in perception_result["detections"]
                    if d.get("counted") and d["label"] in DETECTION_TO_CATEGORY}
@@ -159,6 +163,8 @@ async def analyze(
         entry["name"] = full.get("name", entry["category"])
         entry["image"] = full.get("image")
         entry["glb_url"] = full.get("glb_url")
+        entry["model_url"] = f"/model/{entry['item_id']}" if full.get("glb_url") else None
+        entry["color_hex"] = full.get("color_hex")
         entry["material"] = full.get("material")
         entry["item_room_type"] = full.get("room_type")
         entry["style_tags"] = full.get("style_tags", [])
@@ -175,6 +181,7 @@ async def analyze(
     used = rec_result["total_price"]
     return {
         "perception": perception_result,
+        "scene": scene["camera"],     # camera + floor plane for the 3D-in-photo view
         "style_used": {"label": style, "source": style_source},
         "room_type_used": room_type,
         "space": None if space is None else {
@@ -204,6 +211,30 @@ async def analyze(
             },
         },
     }
+
+
+# 3D models live on Amazon's server, which the browser may not be allowed to read
+# directly (CORS). This endpoint downloads a model once, keeps it in data/models/,
+# and serves it to the page from here.
+MODELS_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "data", "models")
+os.makedirs(MODELS_DIR, exist_ok=True)
+_BY_ID = {i["id"]: i for i in CATALOG}
+
+
+@app.get("/model/{item_id}")
+def model_file(item_id: str):
+    item = _BY_ID.get(item_id)
+    if not item or not item.get("glb_url"):
+        raise HTTPException(status_code=404, detail="No 3D model for this item.")
+    path = os.path.join(MODELS_DIR, re.sub(r"[^A-Za-z0-9_-]", "", item_id) + ".glb")
+    if not os.path.exists(path):
+        tmp = path + ".part"
+        try:
+            urllib.request.urlretrieve(item["glb_url"], tmp)
+            os.replace(tmp, path)
+        except Exception as exc:
+            raise HTTPException(status_code=502, detail=f"Could not download the 3D model: {exc}")
+    return FileResponse(path, media_type="model/gltf-binary")
 
 
 @app.get("/options")

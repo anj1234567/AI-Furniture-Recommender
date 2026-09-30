@@ -17,12 +17,14 @@ REAL implementation (v1):
   the codebase needs to change, the contract stays identical.
 """
 
+import os
 import cv2
 import numpy as np
 from sklearn.cluster import KMeans
 from ultralytics import YOLO
 
 from .preprocess import assess_quality, enhance_if_dark
+from .style import predict_style
 
 STYLE_CONFIDENCE_THRESHOLD = 0.6
 
@@ -32,7 +34,12 @@ YOLO_MODEL = "yolov8n.pt"
 
 # COCO classes relevant to furniture/interior. Full list:
 # https://docs.ultralytics.com/datasets/detect/coco/
-FURNITURE_CLASSES = {"chair", "couch", "bed", "dining table", "tv", "potted plant"}
+# (the fine-tuned HomeObjects-3K model uses "sofa" and "table"; COCO uses "couch" and "dining table")
+FURNITURE_CLASSES = {"chair", "couch", "sofa", "bed", "dining table", "table", "tv", "potted plant"}
+
+# If you trained the detector (train/1_finetune_detector.ipynb), put the result here and the
+# app uses it automatically instead of the COCO model.
+CUSTOM_WEIGHTS = os.path.join(os.path.dirname(__file__), "weights", "furniture.pt")
 
 _model = None  # loaded lazily so importing this file doesn't trigger a download
 
@@ -40,7 +47,8 @@ _model = None  # loaded lazily so importing this file doesn't trigger a download
 def _get_model():
     global _model
     if _model is None:
-        _model = YOLO(YOLO_MODEL)  # auto-downloads on first run
+        _model = YOLO(CUSTOM_WEIGHTS if os.path.exists(CUSTOM_WEIGHTS) else YOLO_MODEL)
+        print("Detector:", "fine-tuned (furniture.pt)" if os.path.exists(CUSTOM_WEIGHTS) else f"pretrained ({YOLO_MODEL})")
     return _model
 
 
@@ -87,13 +95,15 @@ def analyze_room(image_path: str) -> dict:
 
     dominant_colors = _extract_colors(image_rgb)
 
-    # Style classifier not trained yet -- honest placeholder, see docstring.
-    style_confidence = 0.0
+    # Style: trained MobileNetV3 if perception/weights/style_mobilenetv3.pt exists,
+    # otherwise honestly "unclassified" (see perception/style.py).
+    style_label, style_confidence = predict_style(image_rgb)
     return {
+        "detector": "fine-tuned" if os.path.exists(CUSTOM_WEIGHTS) else "pretrained COCO",
         "detections": detections,
         "empty_space": empty_space,
         "dominant_colors": dominant_colors,
-        "style": {"label": "unclassified", "confidence": style_confidence},
+        "style": {"label": style_label, "confidence": style_confidence},
         "needs_confirmation": style_confidence < STYLE_CONFIDENCE_THRESHOLD,
         "image_quality": quality,
     }
