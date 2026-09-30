@@ -20,10 +20,13 @@ from perception.preprocess import REJECT_FLAT_RATIO
 from recommender.interface import (
     recommend, find_missing_categories, filter_to_missing, MIN_DETECTION_CONFIDENCE,
     unmapped_colors, classify_detection, STYLE_OPTIONS, ROOM_OPTIONS, _no_choice,
+    space_summary, footprint_m2,
 )
 from explainability.interface import explain
+from recommender.interface import DETECTION_TO_CATEGORY
 from store_locator.interface import find_stores
 from db import init_db
+from space.depth import estimate_room_size
 
 app = FastAPI(title="AI Furniture Recommender")
 
@@ -79,6 +82,8 @@ async def analyze(
     lng: float = Form(...),
     style: str = Form(""),      # optional: style picked by the user
     room_type: str = Form(""),  # optional: room type picked by the user
+    room_width_m: float = Form(0),   # optional: room size in metres (0 = not given)
+    room_length_m: float = Form(0),
 ):
     """Full pipeline: upload -> perception -> recommend -> explain -> stores."""
     photo_path = os.path.join(UPLOAD_DIR, photo.filename)
@@ -101,6 +106,8 @@ async def analyze(
     # Gap analysis: only recommend categories the room is missing.
     missing = find_missing_categories(CATALOG, perception_result["detections"])
     candidate_catalog = filter_to_missing(CATALOG, missing)
+    if str(room_type).strip().lower() != "outdoor":   # no patio furniture for an indoor room
+        candidate_catalog = [i for i in candidate_catalog if i.get("room_type") != "outdoor"] or candidate_catalog
     upgrade_mode = len(missing) == 0  # room already has every catalog category
 
     # Style: the user's pick wins. Until the style classifier is trained,
@@ -113,10 +120,28 @@ async def analyze(
     room_type = None if _no_choice(room_type) else room_type
     palette = perception_result["dominant_colors"]
 
+    # Floor space: from the size the user typed, otherwise estimated from the photo
+    # (depth model). If neither works, the floor-space check is skipped.
+    space, room_dims, space_m2, space_source = None, None, None, None
+    if room_width_m > 0 and room_length_m > 0:
+        space_source = "user"
+    else:
+        est = estimate_room_size(photo_path)
+        if est:
+            room_width_m, room_length_m, space_source = est["width_m"], est["length_m"], "estimated"
+    if space_source:
+        present = {DETECTION_TO_CATEGORY[d["label"]] for d in perception_result["detections"]
+                   if d.get("counted") and d["label"] in DETECTION_TO_CATEGORY}
+        space = space_summary(room_width_m, room_length_m, CATALOG, present)
+        space["source"] = space_source
+        room_dims, space_m2 = (room_width_m, room_length_m), space["usable_m2"]
+
     rec_result = recommend(style=style, palette=palette, budget=budget,
-                           catalog=candidate_catalog, method="dp_optimal", room_type=room_type)
+                           catalog=candidate_catalog, method="dp_optimal", room_type=room_type,
+                           room_dims_m=room_dims, space_m2=space_m2)
     greedy_result = recommend(style=style, palette=palette, budget=budget,
-                              catalog=candidate_catalog, method="greedy", room_type=room_type)
+                              catalog=candidate_catalog, method="greedy", room_type=room_type,
+                              room_dims_m=room_dims, space_m2=space_m2)
 
     room_context = {
         "style": style,
@@ -124,6 +149,7 @@ async def analyze(
         "budget": budget,
         "missing_categories": missing,
         "room_type": room_type,
+        "space": space,
     }
     catalog_by_id = {item["id"]: item for item in CATALOG}
 
@@ -132,6 +158,7 @@ async def analyze(
         full = {**catalog_by_id.get(entry["item_id"], {}), **entry}
         entry["name"] = full.get("name", entry["category"])
         entry["image"] = full.get("image")
+        entry["glb_url"] = full.get("glb_url")
         entry["material"] = full.get("material")
         entry["item_room_type"] = full.get("room_type")
         entry["style_tags"] = full.get("style_tags", [])
@@ -150,6 +177,8 @@ async def analyze(
         "perception": perception_result,
         "style_used": {"label": style, "source": style_source},
         "room_type_used": room_type,
+        "space": None if space is None else {
+            **space, "used_m2": round(sum(footprint_m2(catalog_by_id[i["item_id"]]) for i in rec_result["selected_items"]), 2)},
         "budget_summary": {
             "budget": budget,
             "used": used,

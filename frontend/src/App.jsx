@@ -21,6 +21,10 @@ export default function App() {
   const [error, setError] = useState(null)
   const [style, setStyle] = useState('')
   const [roomType, setRoomType] = useState('')
+  const [roomW, setRoomW] = useState('')
+  const [roomL, setRoomL] = useState('')
+  const [roomAuto, setRoomAuto] = useState(false)   // true while the size fields hold the app's own estimate
+  const [view3d, setView3d] = useState(null)        // item shown in the 3D viewer
   const [options, setOptions] = useState({ styles: [], room_types: [] })
   const [over, setOver] = useState(false)
   const [picks, setPicks] = useState({})        // category -> chosen item_id (user swaps)
@@ -42,6 +46,7 @@ export default function App() {
     if (!f) return
     setPhoto(f)
     setPreview(URL.createObjectURL(f))
+    if (roomAuto) { setRoomW(''); setRoomL(''); setRoomAuto(false) }   // drop the old photo's estimate
   }
 
   function changeChoice(newStyle, newRoom) {
@@ -64,6 +69,7 @@ export default function App() {
     fd.append('lng', String(coords.lng))
     fd.append('style', styleValue)
     fd.append('room_type', roomValue)
+    if (roomW && roomL && !roomAuto) { fd.append('room_width_m', roomW); fd.append('room_length_m', roomL) }
     try {
       const res = await fetch(`${API_URL}/analyze`, { method: 'POST', body: fd })
       if (!res.ok) {
@@ -74,7 +80,11 @@ export default function App() {
       setImgSize(null)
       setPicks({})
       setOpenSwap(null)
-      setResult(await res.json())
+      const data = await res.json()
+      if (data.space?.source === 'estimated') {
+        setRoomW(String(data.space.room_w_m)); setRoomL(String(data.space.room_l_m)); setRoomAuto(true)
+      }
+      setResult(data)
     } catch (err) {
       setResult(null)
       setError(err.message === 'Failed to fetch'
@@ -97,6 +107,8 @@ export default function App() {
   const used = items.reduce((t, i) => t + i.price, 0)
   const totalScore = items.reduce((t, i) => t + i.score, 0)
   const anySwapped = items.some((i) => i.swapped)
+  const sp = result?.space
+  const usedArea = items.reduce((t, i) => t + (i.footprint_m2 || 0), 0)
   const bs = result ? {
     budget: result.budget_summary.budget, used, left: result.budget_summary.budget - used,
     percent_used: result.budget_summary.budget > 0 ? Math.round((100 * used) / result.budget_summary.budget) : 0,
@@ -143,6 +155,20 @@ export default function App() {
               {[10000, 25000, 40000, 75000].map((v) => (
                 <button type="button" key={v} className="chip" onClick={() => setBudget(String(v))}>{inr(v)}</button>
               ))}
+            </div>
+          </div>
+
+          <div className="field">
+            <label>Room size <span className="opt">(metres, filled in automatically)</span></label>
+            <div className="two">
+              <input className="input" type="number" min="1" step="0.1" value={roomW}
+                     onChange={(e) => { setRoomW(e.target.value); setRoomAuto(false) }} placeholder="Width" />
+              <input className="input" type="number" min="1" step="0.1" value={roomL}
+                     onChange={(e) => { setRoomL(e.target.value); setRoomAuto(false) }} placeholder="Length" />
+            </div>
+            <div className="hint">
+              {roomAuto ? 'Estimated from your photo. If it looks wrong, type the real size and run again.'
+                        : 'Leave empty and the app estimates it from your photo.'}
             </div>
           </div>
 
@@ -274,6 +300,25 @@ export default function App() {
                     <div className="hint">
                       Total match score of this set: <b>{totalScore.toFixed(3)}</b>. The optimizer picks the best-matching set; it doesn't try to spend the whole budget.
                     </div>
+                    {!sp && (
+                      <div className="hint" style={{ marginTop: 10 }}>
+                        Floor-space check is off: the room size could not be estimated from this photo. Type the size on the left to turn it on.
+                      </div>
+                    )}
+                    {sp && (
+                      <div style={{ marginTop: 14 }}>
+                        <div className="budget-top">
+                          <span>Floor space: <b>{usedArea.toFixed(1)} m²</b> of <b>{sp.usable_m2} m²</b> free</span>
+                          <span>{Math.max(0, sp.usable_m2 - usedArea).toFixed(1)} m² left</span>
+                        </div>
+                        <div className="bar"><div style={{ width: `${sp.usable_m2 > 0 ? Math.min(100, (100 * usedArea) / sp.usable_m2) : 100}%` }} /></div>
+                        <div className="hint">
+                          {sp.source === 'estimated' ? 'Estimated from your photo: ' : 'Your room: '}{sp.room_w_m} × {sp.room_l_m} m ({sp.room_area_m2} m²). We keep {sp.walkway_pct}% of the floor free
+                          to walk{sp.existing_m2 > 0 ? ` and subtract ${sp.existing_m2} m² for furniture already in the room` : ''}.
+                          The optimizer now respects both your budget and this floor space.
+                        </div>
+                      </div>
+                    )}
                     {anySwapped && (
                       <div className="hint" style={{ color: 'var(--warn)' }}>
                         You swapped some items, so this set is no longer the DP-optimal one.{' '}
@@ -307,11 +352,17 @@ export default function App() {
                             </div>
                           </div>
                           <div className="meta">
-                            {[item.material && `${item.material}`, item.item_room_type && `for ${item.item_room_type}`]
+                            {[item.width_cm && `${item.width_cm} × ${item.depth_cm}${item.height_cm ? ' × ' + item.height_cm : ''} cm`,
+                              item.material && `${item.material}`, item.item_room_type && `for ${item.item_room_type}`]
                               .filter(Boolean).join(' · ')}
                           </div>
                           <div className="why">{item.explanation}</div>
 
+                          {item.glb_url && (
+                            <button type="button" className="swapbtn view3d" onClick={() => setView3d(item)}>
+                              🧊 View in 3D (real size)
+                            </button>
+                          )}
                           {choices.length > 0 && (
                             <button type="button" className="swapbtn"
                                     onClick={() => setOpenSwap(openSwap === item.category ? null : item.category)}>
@@ -321,16 +372,19 @@ export default function App() {
                           {openSwap === item.category && (
                             <div className="alts">
                               {choices.map((c) => {
-                                const fits = used - item.price + c.price <= bs.budget
+                                const fitsMoney = used - item.price + c.price <= bs.budget
+                                const fitsSpace = !sp || usedArea - (item.footprint_m2 || 0) + (c.footprint_m2 || 0) <= sp.usable_m2 + 1e-9
+                                const fits = fitsMoney && fitsSpace
                                 return (
                                   <button type="button" key={c.item_id} className="alt" disabled={!fits}
-                                          title={fits ? 'Use this item' : 'Would go over your budget'}
+                                          title={fits ? 'Use this item' : (fitsMoney ? 'Would not fit in your free floor space' : 'Would go over your budget')}
                                           onClick={() => { setPicks({ ...picks, [item.category]: c.item_id }); setOpenSwap(null) }}>
                                     <div className="altpic">{c.image && <img src={`${API_URL}${c.image}`} alt={c.name} />}</div>
                                     <div className="altinfo">
                                       <b>{c.name}{c.item_id === orig.item_id ? ' · optimal pick' : ''}</b>
                                       <span>{inr(c.price)} · match {Math.round(c.score * 100)}%</span>
-                                      {!fits && <span className="over">over budget</span>}
+                                      {c.width_cm && <span>{c.width_cm} × {c.depth_cm} cm</span>}
+                                      {!fits && <span className="over">{fitsMoney ? 'no floor space' : 'over budget'}</span>}
                                     </div>
                                   </button>
                                 )
@@ -389,6 +443,25 @@ export default function App() {
           )}
         </div>
       </div>
+
+      {view3d && (
+        <div className="modal" onClick={() => setView3d(null)}>
+          <div className="modalbox" onClick={(e) => e.stopPropagation()}>
+            <div className="modalhead">
+              <b>{view3d.name}</b>
+              <button type="button" className="linkbtn" onClick={() => setView3d(null)}>Close ✕</button>
+            </div>
+            <model-viewer src={view3d.glb_url} alt={view3d.name}
+                          {...{ 'camera-controls': true, 'auto-rotate': true, 'shadow-intensity': '1' }}
+                          style={{ width: '100%', height: '420px', background: '#f4f4f6', borderRadius: 10 }} />
+            <div className="hint">
+              Drag to rotate, scroll to zoom. The model is the real product at real size
+              ({view3d.width_cm} × {view3d.depth_cm}{view3d.height_cm ? ` × ${view3d.height_cm}` : ''} cm).
+              It is a large file, so the first load can take a few seconds.
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

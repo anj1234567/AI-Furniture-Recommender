@@ -37,6 +37,12 @@ def explain(item: Dict, room_context: Dict) -> str:
     if matched:
         reasons.append(f"its {', '.join(matched)} colour matches your room's palette")
 
+    space = room_context.get("space")
+    if space and item.get("width_cm") and item.get("depth_cm"):
+        area = item["width_cm"] * item["depth_cm"] / 10000
+        reasons.append(f"it measures {item['width_cm']} x {item['depth_cm']} cm and takes {area:.1f} m\u00b2 "
+                       f"of the {space['usable_m2']} m\u00b2 free in your room")
+
     budget = room_context.get("budget") or 0
     price = item.get("price", 0)
     if budget > 0:

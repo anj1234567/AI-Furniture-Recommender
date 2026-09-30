@@ -20,3 +20,5 @@ backend/uploads/
 data/images/
 
 .env
+
+data/raw/
