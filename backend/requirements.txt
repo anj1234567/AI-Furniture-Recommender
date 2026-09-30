@@ -11,3 +11,6 @@ scikit-learn==1.5.2     # K-means
 
 # Track C (store-locator)
 # googlemaps==4.10.0
+
+# Room-size estimation from the photo (space/depth.py). torch comes with ultralytics.
+transformers>=4.45

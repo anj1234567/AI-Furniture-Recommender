@@ -229,7 +229,110 @@ def solve_dp(items_by_category: Dict[str, List[Dict]], budget: float) -> List[Di
     return selected
 
 
-def solve_greedy(items_by_category: Dict[str, List[Dict]], budget: float) -> List[Dict]:
+
+# ---------------------------------------------------------------------------
+# Floor-space awareness (uses the real width/depth of every ABO item).
+# The problem becomes MCKP with TWO limits: budget (rupees) AND free floor
+# area (m2). Items without size data (old catalog) count as 0 m2.
+# ---------------------------------------------------------------------------
+WALK_FRACTION = 0.40      # share of the floor kept free for walking (interior-design rule of thumb)
+WALL_MARGIN_M = 0.30      # an item must be at least this much shorter than the wall
+AREA_UNIT_M2 = 0.1        # DP counts floor area in steps of 0.1 m2
+
+
+def footprint_m2(item: Dict) -> float:
+    w, d = item.get("width_cm"), item.get("depth_cm")
+    return round(w * d / 10000.0, 3) if w and d else 0.0
+
+
+def fits_room(item: Dict, room_w_m: float, room_l_m: float) -> bool:
+    """Can the item physically stand in the room (long side along the longer wall)?"""
+    w, d = item.get("width_cm"), item.get("depth_cm")
+    if not w or not d:
+        return True  # unknown size: don't reject
+    longer, shorter = max(room_w_m, room_l_m), min(room_w_m, room_l_m)
+    return w / 100 <= longer - WALL_MARGIN_M and d / 100 <= shorter - WALL_MARGIN_M
+
+
+def space_summary(room_w_m: float, room_l_m: float, catalog: List[Dict], present_categories) -> Dict:
+    """Free floor area left for NEW furniture.
+    usable = room area x (1 - walkway share) - footprint of furniture already in the room
+    (existing furniture is assumed to have the median footprint of that catalog category)."""
+    room_area = room_w_m * room_l_m
+    existing = 0.0
+    for cat in present_categories:
+        areas = sorted(footprint_m2(i) for i in catalog if i["category"] == cat and footprint_m2(i) > 0)
+        if areas:
+            existing += areas[len(areas) // 2]
+    usable = max(0.0, room_area * (1 - WALK_FRACTION) - existing)
+    return {
+        "room_w_m": room_w_m, "room_l_m": room_l_m, "room_area_m2": round(room_area, 2),
+        "walkway_pct": int(WALK_FRACTION * 100), "existing_m2": round(existing, 2),
+        "usable_m2": round(usable, 2),
+    }
+
+
+def _pareto(entries):
+    """Drop items that another item beats on price, area AND score."""
+    kept = []
+    for e in sorted(entries, key=lambda e: (e[0], e[1], -e[2]["_score"])):
+        if not any(k[0] <= e[0] and k[1] <= e[1] and k[2]["_score"] >= e[2]["_score"] for k in kept):
+            kept.append(e)
+    return kept
+
+
+def solve_dp_space(items_by_category: Dict[str, List[Dict]], budget: float, space_m2: float) -> List[Dict]:
+    """MCKP with two capacities (budget and floor area), solved by DP with numpy.
+    dp[b, a] = best total score using at most b money units and a area units."""
+    import numpy as np
+    from math import gcd, ceil
+    from functools import reduce
+
+    categories = list(items_by_category.keys())
+    n = len(categories)
+    prices = [int(it["price"]) for items in items_by_category.values() for it in items]
+    unit = max(reduce(gcd, prices), 1) if prices else 1
+    if int(budget) // unit > 400:                       # keep the table small
+        unit *= ceil((int(budget) // unit) / 400)
+    cap = int(budget) // unit
+    area_cap = int(space_m2 / AREA_UNIT_M2 + 1e-9)
+
+    cats = []
+    for cat in categories:
+        entries = []
+        for it in items_by_category[cat]:
+            p = ceil(int(it["price"]) / unit)
+            q = ceil(footprint_m2(it) / AREA_UNIT_M2 - 1e-9)
+            if p <= cap and q <= area_cap:
+                entries.append((p, q, it))
+        cats.append(_pareto(entries))
+
+    dp = np.zeros((cap + 1, area_cap + 1))
+    choice = np.zeros((n + 1, cap + 1, area_cap + 1), dtype=np.int32)
+    for i, entries in enumerate(cats, start=1):
+        new = dp.copy()
+        for k, (p, q, it) in enumerate(entries, start=1):
+            cand = dp[: cap + 1 - p, : area_cap + 1 - q] + it["_score"] - it["price"] * 1e-9
+            target = new[p:, q:]
+            better = cand > target
+            target[better] = cand[better]
+            ch = choice[i, p:, q:]
+            ch[better] = k
+        dp = new
+
+    selected, b, a = [], cap, area_cap
+    for i in range(n, 0, -1):
+        k = int(choice[i, b, a])
+        if k:
+            p, q, it = cats[i - 1][k - 1]
+            selected.append(it)
+            b -= p
+            a -= q
+    return selected
+
+
+def solve_greedy(items_by_category: Dict[str, List[Dict]], budget: float,
+                 space_m2: Optional[float] = None) -> List[Dict]:
     """Greedy baseline: sort ALL items (across every category) by
     score-per-rupee descending, take each one if it fits the remaining
     budget and its category hasn't been filled yet."""
@@ -237,13 +340,17 @@ def solve_greedy(items_by_category: Dict[str, List[Dict]], budget: float) -> Lis
     all_items.sort(key=lambda it: it["_score"] / max(it["price"], 1), reverse=True)
 
     selected, filled_categories, remaining = [], set(), budget
+    space_left = space_m2
     for item in all_items:
         if item["category"] in filled_categories:
             continue
-        if item["price"] <= remaining:
+        area = footprint_m2(item)
+        if item["price"] <= remaining and (space_left is None or area <= space_left + 1e-9):
             selected.append(item)
             filled_categories.add(item["category"])
             remaining -= item["price"]
+            if space_left is not None:
+                space_left -= area
     return selected
 
 
@@ -254,6 +361,8 @@ def recommend(
     catalog: List[Dict],
     method: str = "dp_optimal",
     room_type: Optional[str] = None,
+    room_dims_m: Optional[tuple] = None,
+    space_m2: Optional[float] = None,
 ) -> dict:
     """
     Real recommender. See docs/CONTRACTS.md section 3 for the return shape.
@@ -266,11 +375,21 @@ def recommend(
         catalog: list of catalog items (docs/CONTRACTS.md section 2).
         method: "dp_optimal" (default) or "greedy" -- for the Phase 3 comparison.
         room_type: optional broad room type picked by the user (see ROOM_GROUPS).
+        room_dims_m: optional (width, length) of the room in metres. Items that
+               cannot physically fit are removed.
+        space_m2: optional free floor area for new furniture. Adds the second
+               constraint (floor area) to the optimisation.
     """
     if not catalog:
         return {"selected_items": [], "total_price": 0, "compatibility_score": 0, "method": method}
 
     palette_rgb = [_hex_to_rgb(hexc) for hexc in palette]
+
+    if room_dims_m:
+        catalog = [it for it in catalog if fits_room(it, *room_dims_m)]
+        if not catalog:
+            return {"selected_items": [], "alternatives": {}, "total_price": 0,
+                    "compatibility_score": 0, "method": method}
 
     # Score every item once up front (both solvers reuse "_score")
     scored_catalog = []
@@ -281,13 +400,18 @@ def recommend(
 
     items_by_category = _group_by_category(scored_catalog)
 
-    solver = solve_dp if method == "dp_optimal" else solve_greedy
-    picked = solver(items_by_category, budget)
+    if method == "dp_optimal":
+        picked = (solve_dp_space(items_by_category, budget, space_m2)
+                  if space_m2 is not None else solve_dp(items_by_category, budget))
+    else:
+        picked = solve_greedy(items_by_category, budget, space_m2)
 
-    selected_items = [
-        {"item_id": it["id"], "category": it["category"], "score": it["_score"], "price": it["price"]}
-        for it in picked
-    ]
+    def _entry(it):
+        return {"item_id": it["id"], "category": it["category"], "score": it["_score"],
+                "price": it["price"], "width_cm": it.get("width_cm"), "depth_cm": it.get("depth_cm"),
+                "height_cm": it.get("height_cm"), "footprint_m2": footprint_m2(it)}
+
+    selected_items = [_entry(it) for it in picked]
     total_price = sum(it["price"] for it in selected_items)
     avg_score = round(sum(it["score"] for it in selected_items) / len(selected_items), 3) if selected_items else 0
 
@@ -297,7 +421,8 @@ def recommend(
     for sel in picked:
         cat = sel["category"]
         pool = sorted(
-            (it for it in items_by_category[cat] if it["id"] != sel["id"] and it["price"] <= budget),
+            (it for it in items_by_category[cat] if it["id"] != sel["id"] and it["price"] <= budget
+             and (space_m2 is None or footprint_m2(it) <= space_m2)),
             key=lambda it: (-it["_score"], it["price"]),
         )
         seen, alts = {sel.get("name")}, []
@@ -305,7 +430,7 @@ def recommend(
             if it.get("name") in seen:
                 continue
             seen.add(it.get("name"))
-            alts.append({"item_id": it["id"], "category": cat, "score": it["_score"], "price": it["price"]})
+            alts.append(_entry(it))
             if len(alts) == MAX_ALTERNATIVES:
                 break
         alternatives[cat] = alts
