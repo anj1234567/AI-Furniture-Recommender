@@ -22,3 +22,9 @@ data/images/
 .env
 
 data/raw/
+
+data/models/
+
+backend/perception/weights/*.pt
+
+backend/perception/weights/*.json

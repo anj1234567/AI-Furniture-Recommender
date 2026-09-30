@@ -453,8 +453,10 @@ def recommend(
 DETECTION_TO_CATEGORY = {
     "chair": "chair",
     "couch": "sofa",
+    "sofa": "sofa",            # fine-tuned model (HomeObjects-3K) class names
     "bed": "bed",
     "dining table": "table",
+    "table": "table",
 }
 
 
