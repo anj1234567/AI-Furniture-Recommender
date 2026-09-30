@@ -11,12 +11,16 @@ mocked. As each remaining piece lands, this file doesn't need to change
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 import shutil
 import os
 import re
 import json
 import urllib.request
+import time
+
+import cv2
+import numpy as np
 
 from perception.interface import analyze_room
 from perception.preprocess import REJECT_FLAT_RATIO
@@ -31,6 +35,7 @@ from recommender.quality import clean_catalog
 from store_locator.interface import find_stores
 from db import init_db
 from space.scene import analyze_scene
+from editing.inpaint import boxes_to_mask, remove_objects, grow_mask
 
 app = FastAPI(title="AI Furniture Recommender")
 
@@ -39,6 +44,7 @@ app.add_middleware(
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],  # Vite dev server default
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["X-Inpaint-Method"],
 )
 
 UPLOAD_DIR = "uploads"
@@ -120,8 +126,10 @@ async def analyze(
     # source of the style (docs/CONTRACTS.md: user confirmation flow).
     if not _no_choice(style):
         style_source = "user"
-    else:
+    elif perception_result["style"]["confidence"] >= 0.5:      # trained classifier is confident enough
         style, style_source = perception_result["style"]["label"], "model"
+    else:                                                      # not sure: stay neutral instead of guessing
+        style, style_source = "unclassified", "none"
     room_type = None if _no_choice(room_type) else room_type
     palette = perception_result["dominant_colors"]
 
@@ -182,6 +190,7 @@ async def analyze(
     return {
         "perception": perception_result,
         "scene": scene["camera"],     # camera + floor plane for the 3D-in-photo view
+        "mesh": None,                 # the orbit "Room in 3D" view was removed; keeps the response small
         "style_used": {"label": style, "source": style_source},
         "room_type_used": room_type,
         "space": None if space is None else {
@@ -211,6 +220,40 @@ async def analyze(
             },
         },
     }
+
+
+@app.post("/inpaint")
+def inpaint(
+    photo: UploadFile = File(...),
+    boxes: str = Form("[]"),          # JSON [[x1,y1,x2,y2], ...] in photo pixels (detected objects to remove)
+    mask: UploadFile = File(None),    # optional PNG the user painted (white = remove)
+):
+    """Remove objects from the photo. Returns the cleaned JPEG; the page then re-analyses it."""
+    path = os.path.join(UPLOAD_DIR, f"inpaint_src_{int(time.time() * 1000)}.jpg")
+    with open(path, "wb") as f:
+        shutil.copyfileobj(photo.file, f)
+    bgr = cv2.imread(path)
+    if bgr is None:
+        raise HTTPException(status_code=400, detail="Could not read the photo.")
+    try:
+        box_list = json.loads(boxes or "[]")
+    except ValueError:
+        raise HTTPException(status_code=400, detail="boxes must be JSON.")
+    m = boxes_to_mask(bgr.shape, box_list, bgr=bgr, refine=True) if box_list else np.zeros(bgr.shape[:2], np.uint8)
+    if mask is not None:
+        painted = cv2.imdecode(np.frombuffer(mask.file.read(), np.uint8), cv2.IMREAD_GRAYSCALE)
+        if painted is not None:
+            painted = cv2.resize(painted, (bgr.shape[1], bgr.shape[0]), interpolation=cv2.INTER_NEAREST)
+            m = np.maximum(m, grow_mask(painted, 0.01))
+    if not m.any():
+        raise HTTPException(status_code=400, detail="Nothing selected. Click a detected object or paint over it.")
+    if m.mean() / 255.0 > 0.6:
+        raise HTTPException(status_code=400, detail="That would remove most of the photo. Select smaller areas.")
+    cleaned, engine = remove_objects(bgr, m)
+    ok, buf = cv2.imencode(".jpg", cleaned, [cv2.IMWRITE_JPEG_QUALITY, 92])
+    if not ok:
+        raise HTTPException(status_code=500, detail="Could not encode the cleaned photo.")
+    return Response(content=buf.tobytes(), media_type="image/jpeg", headers={"X-Inpaint-Method": engine})
 
 
 # 3D models live on Amazon's server, which the browser may not be allowed to read
