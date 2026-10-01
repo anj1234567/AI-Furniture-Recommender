@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { layoutRoom } from '../lib/layout'
 import { loadModel } from '../lib/models'
+import { applyTint } from '../lib/recolor'
 
 const WALL_H = 2.7
 const lum = (hex) => { const c = new THREE.Color(hex); return 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b }
@@ -13,12 +14,13 @@ function roomColours(palette) {
   return { wall: s[0], floor: s[Math.min(s.length - 1, Math.floor(s.length * 0.7))] }
 }
 
-export default function Room3D({ items, room, palette, photoUrl, apiUrl }) {
+export default function Room3D({ items, room, palette, photoUrl, apiUrl, colors = {} }) {
   const mount = useRef(null)
   const three = useRef({})            // renderer, camera, controls, content group
   const [resetKey, setResetKey] = useState(0)
   const [status, setStatus] = useState({ loaded: 0, total: 0, failed: 0 })
   const [layoutInfo, setLayoutInfo] = useState({ allFit: true })
+  const colorsRef = useRef(colors); colorsRef.current = colors
 
   // ---- one-time setup: renderer, camera, lights, controls, render loop ----
   useEffect(() => {
@@ -104,6 +106,7 @@ export default function Room3D({ items, room, palette, photoUrl, apiUrl }) {
         new THREE.MeshStandardMaterial({ color: item.color_hex || '#9aa5a1', transparent: true, opacity: 0.55 }))
       box.position.y = h / 2; box.castShadow = true
       g.add(box); content.add(g); movers.push(g)
+      applyTint(g, colorsRef.current[item.category])
       if (!item.model_url) { setStatus((s) => ({ ...s, loaded: s.loaded + 1 })); return }
       loadModel(`${apiUrl}${item.model_url}`).then((obj) => {
         if (cancelled) return
@@ -116,9 +119,12 @@ export default function Room3D({ items, room, palette, photoUrl, apiUrl }) {
         obj.position.set(-c.x, -bb.min.y, -c.z)                     // centre it, feet on the floor
         obj.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true } })
         g.remove(box); g.add(obj)
+        applyTint(g, colorsRef.current[item.category])
         setStatus((st) => ({ ...st, loaded: st.loaded + 1 }))
       }).catch(() => { if (!cancelled) setStatus((st) => ({ ...st, loaded: st.loaded + 1, failed: st.failed + 1 })) })
     })
+
+    three.current.movers = movers
 
     // camera: a corner view, looking at the middle of the room
     const R = Math.max(W, L)
@@ -162,6 +168,11 @@ export default function Room3D({ items, room, palette, photoUrl, apiUrl }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key])
+
+  // the user recoloured a piece
+  useEffect(() => {
+    three.current.movers?.forEach((g) => applyTint(g, colors[g.userData.category]))
+  }, [colors, key, status.loaded])
 
   const view = (top) => {
     const { camera, controls } = three.current, R = Math.max(room.w, room.l)
