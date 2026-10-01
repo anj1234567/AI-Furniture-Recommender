@@ -8,10 +8,14 @@ mocked. As each remaining piece lands, this file doesn't need to change
 (that's the point of the contracts).
 """
 
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from dotenv import load_dotenv
+load_dotenv()
+
+
 import shutil
 import os
 import re
@@ -21,7 +25,7 @@ import urllib.request
 from perception.interface import analyze_room
 from perception.preprocess import REJECT_FLAT_RATIO
 from recommender.interface import (
-    recommend, find_missing_categories, filter_to_missing, MIN_DETECTION_CONFIDENCE,
+    recommend, find_missing_categories, filter_to_missing, filter_to_room, MIN_DETECTION_CONFIDENCE,
     unmapped_colors, classify_detection, STYLE_OPTIONS, ROOM_OPTIONS, _no_choice,
     space_summary, footprint_m2,
 )
@@ -31,6 +35,8 @@ from recommender.quality import clean_catalog
 from store_locator.interface import find_stores
 from db import init_db
 from space.scene import analyze_scene
+
+from catalog_module.interface import search_online, pick_best, build_query, detect_color
 
 app = FastAPI(title="AI Furniture Recommender")
 
@@ -109,11 +115,31 @@ async def analyze(
         d["counted"], d["not_counted_reason"] = classify_detection(d)
 
     # Gap analysis: only recommend categories the room is missing.
-    missing = find_missing_categories(CATALOG, perception_result["detections"])
-    candidate_catalog = filter_to_missing(CATALOG, missing)
-    if str(room_type).strip().lower() != "outdoor":   # no patio furniture for an indoor room
-        candidate_catalog = [i for i in candidate_catalog if i.get("room_type") != "outdoor"] or candidate_catalog
-    upgrade_mode = len(missing) == 0  # room already has every catalog category
+    # missing = find_missing_categories(CATALOG, perception_result["detections"])
+    # candidate_catalog = filter_to_missing(CATALOG, missing)
+    # if str(room_type).strip().lower() != "outdoor":   # no patio furniture for an indoor room
+    #     candidate_catalog = [i for i in candidate_catalog if i.get("room_type") != "outdoor"] or candidate_catalog
+    # upgrade_mode = len(missing) == 0  # room already has every catalog category
+    
+    # Normalize selected room
+    room_type = None if _no_choice(room_type) else str(room_type).strip().lower()
+
+# First restrict the catalog to furniture relevant to this room.
+    room_catalog = filter_to_room(CATALOG, room_type)
+
+# Find only the furniture categories missing from this room.
+    missing = find_missing_categories(
+    room_catalog,
+    perception_result["detections"]
+)
+
+# Recommend only the missing furniture categories.
+    candidate_catalog = filter_to_missing(
+    room_catalog,
+    missing
+)
+
+    upgrade_mode = len(missing) == 0
 
     # Style: the user's pick wins. Until the style classifier is trained,
     # the perception layer returns "unclassified", so this pick is the
@@ -242,6 +268,41 @@ def options():
     """Style and room-type choices for the frontend dropdowns."""
     return {"styles": STYLE_OPTIONS, "room_types": ROOM_OPTIONS}
 
+# @app.get("/online/search")
+# def online_search(
+#     q: str = Query(..., max_length=80),
+#     category: str = Query(..., max_length=30),
+#     max_price: float | None = None,
+#     ref_price: float | None = None,
+#     limit: int = Query(4, ge=1, le=10),
+# ):
+#     try:
+#         items = search_online(q, category)
+#     except Exception as e:
+#         raise HTTPException(status_code=502, detail=f"Online search failed: {e}")
+#     if max_price is not None:
+#         items = [i for i in items if i["price"] is not None and i["price"] <= max_price]
+#     return {"items": pick_best(items, category, ref_price, limit)}
+
+@app.get("/online/search")
+def online_search(
+    category: str = Query(..., max_length=30),
+    ref_name: str = Query("", max_length=200),
+    ref_color: str = Query("", max_length=30),
+    room_type: str = Query("", max_length=40),
+    max_price: float | None = None,
+    ref_price: float | None = None,
+    limit: int = Query(4, ge=1, le=10),
+):
+    q = build_query(ref_name, category, ref_color)
+    try:
+        items = search_online(q, category)
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Online search failed: {e}")
+    if max_price is not None:
+        items = [i for i in items if i["price"] is not None and i["price"] <= max_price]
+    color = detect_color(ref_name, ref_color)
+    return {"query": q, "items": pick_best(items, category, ref_price, ref_name, color, room_type, limit)}
 
 @app.get("/health")
 def health():

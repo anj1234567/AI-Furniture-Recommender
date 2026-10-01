@@ -30,16 +30,19 @@ STYLE_CONFIDENCE_THRESHOLD = 0.6
 
 # yolov8n = smallest/fastest. If detections look weak, try "yolov8s.pt" or "yolov8m.pt"
 # (bigger = more accurate, slower, auto-downloads on first run).
-YOLO_MODEL = "yolov8n.pt"
+# YOLO_MODEL = "yolov8n.pt"
+YOLO_MODEL = os.path.join(os.path.dirname(__file__), "..", "models", "homeobjects_best.pt")
 
 # COCO classes relevant to furniture/interior. Full list:
 # https://docs.ultralytics.com/datasets/detect/coco/
 # (the fine-tuned HomeObjects-3K model uses "sofa" and "table"; COCO uses "couch" and "dining table")
-FURNITURE_CLASSES = {"chair", "couch", "sofa", "bed", "dining table", "table", "tv", "potted plant"}
+# FURNITURE_CLASSES = {"chair", "couch", "sofa", "bed", "dining table", "table", "tv", "potted plant"}
+FURNITURE_CLASSES = {"chair", "sofa", "bed", "table", "lamp", "tv",
+                     "wardrobe", "potted plant", "door", "window"}
 
 # If you trained the detector (train/1_finetune_detector.ipynb), put the result here and the
 # app uses it automatically instead of the COCO model.
-CUSTOM_WEIGHTS = os.path.join(os.path.dirname(__file__), "weights", "furniture.pt")
+CUSTOM_WEIGHTS = os.path.join(os.path.dirname(__file__), "weights", "homeobjects_best.pt")
 
 _model = None  # loaded lazily so importing this file doesn't trigger a download
 
@@ -48,7 +51,7 @@ def _get_model():
     global _model
     if _model is None:
         _model = YOLO(CUSTOM_WEIGHTS if os.path.exists(CUSTOM_WEIGHTS) else YOLO_MODEL)
-        print("Detector:", "fine-tuned (furniture.pt)" if os.path.exists(CUSTOM_WEIGHTS) else f"pretrained ({YOLO_MODEL})")
+        print("Detector:", "fine-tuned (homeobjects_best.pt)" if os.path.exists(CUSTOM_WEIGHTS) else f"pretrained ({YOLO_MODEL})")
     return _model
 
 
@@ -73,7 +76,8 @@ def analyze_room(image_path: str) -> dict:
     work_bgr = enhance_if_dark(image_bgr, quality)
     image_rgb = cv2.cvtColor(work_bgr, cv2.COLOR_BGR2RGB)
 
-    results = _get_model()(work_bgr, verbose=False)[0]
+    # results = _get_model()(work_bgr, verbose=False)[0]
+    results = _get_model().predict(work_bgr, conf = 0.35,verbose=False)[0]
     detections = []
     covered_area = 0
     for box in results.boxes:

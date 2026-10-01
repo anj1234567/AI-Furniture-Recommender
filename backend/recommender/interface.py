@@ -105,6 +105,40 @@ MAX_ALTERNATIVES = 3  # swap options shown per category
 def _no_choice(value) -> bool:
     return value is None or str(value).strip().lower() in ("", "unclassified", "auto", "any")
 
+# Furniture categories allowed for each room.
+# These are the actual categories available in catalog.json.
+ROOM_ALLOWED_CATEGORIES = {
+    "living": {"sofa", "table", "chair"},
+    "bedroom": {"bed", "table", "chair"},
+    "dining": {"table", "chair"},
+    "study": {"table", "chair"},
+    "kids": {"bed", "table", "chair"},
+    "outdoor": {"sofa", "table", "chair"},
+}
+
+
+def filter_to_room(catalog: List[Dict], room_type: str) -> List[Dict]:
+    """
+    Keep only furniture relevant to the selected room.
+    """
+
+    if _no_choice(room_type):
+        return catalog
+
+    room = str(room_type).strip().lower()
+
+    allowed_categories = ROOM_ALLOWED_CATEGORIES.get(room)
+    allowed_room_types = ROOM_GROUPS.get(room)
+
+    if not allowed_categories:
+        return catalog
+
+    return [
+        item
+        for item in catalog
+        if item.get("category", "").lower() in allowed_categories
+        and str(item.get("room_type") or "").lower() in allowed_room_types
+    ]
 
 def style_matches(item: Dict, style: str) -> bool:
     """True if the item's style tags belong to the chosen style."""
