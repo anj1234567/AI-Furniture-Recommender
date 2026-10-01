@@ -112,6 +112,15 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
 .facts b{display:block;font-size:17px}.facts span{font-size:12px;color:var(--muted)}
 
+.onlinelink, .onlinelink:visited {
+  color: #6ee7d0;
+  text-decoration: none;
+  font-size: 12px;
+}
+.onlinelink:hover {
+  color: #a7f3e6;
+  text-decoration: underline;
+}
 /* ---- colours, clear objects, room in 3D ---- */
 .colorpanel{display:grid;gap:12px}
 .cp-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}

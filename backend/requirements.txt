@@ -14,3 +14,6 @@ scikit-learn==1.5.2     # K-means
 
 # Room-size estimation from the photo (space/depth.py). torch comes with ultralytics.
 transformers>=4.45
+
+python-dotenv==1.0.0
+requests==2.31.0

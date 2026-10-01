@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { API_URL, inr } from '../lib/api'
+import OnlineOptions from "./OnlineOptions";
 
 export default function PicksPanel({ d }) {
   const { focusCat, items: allItems, optimal, alts, bs, sp, usedArea, totalScore, anySwapped, budget, picks, setPicks, openSwap, setOpenSwap, setView3d } = d
@@ -92,6 +93,14 @@ export default function PicksPanel({ d }) {
                       ))}
                     </details>
                   )}
+                  <OnlineOptions
+                  category={item.category}
+                  budgetLeft={bs ? bs.left + item.price : budget}
+                  refPrice={item.price}
+                  refName={item.name}
+                  color={item.color_tags?.[0]}
+                  roomType={item.item_room_type}
+                  />
                 </div>
               </div>
             )
