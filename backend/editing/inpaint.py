@@ -24,7 +24,7 @@ import numpy as np
 
 LAMA_URL = "https://github.com/enesmsahin/simple-lama-inpainting/releases/download/v0.1.0/big-lama.pt"
 WEIGHTS = os.path.join(os.path.dirname(__file__), "weights", "big-lama.pt")
-LAMA_MAX_SIDE = 768         # LaMa runs on a crop around each removed object, never on the whole photo
+LAMA_MAX_SIDE = 1024        # LaMa runs on a crop around each removed object, never on the whole photo
 CV_MAX_SIDE = 800
 
 _lama = None
@@ -64,7 +64,7 @@ def _grabcut_box(bgr, box, margin_px):
     return full
 
 
-def boxes_to_mask(shape, boxes, bgr=None, refine=True, pad=0.02):
+def boxes_to_mask(shape, boxes, bgr=None, refine=True, pad=0.035):
     """boxes: [[x1,y1,x2,y2], ...] in pixels. Returns a uint8 mask (255 = remove)."""
     h, w = shape[:2]
     mask = np.zeros((h, w), np.uint8)
@@ -161,21 +161,134 @@ def _opencv_fill(bgr, mask):
     return cv2.inpaint(bgr, mask, radius, cv2.INPAINT_TELEA)
 
 
-def _add_grain(filled, crop, mask):
-    """Inpainted areas are smoother than a real photo, which reads as 'blurry'.
-    Add noise with the same strength as the untouched pixels around the object."""
-    gray = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY).astype(np.float32)
-    detail = gray - cv2.GaussianBlur(gray, (0, 0), 1.5)
-    outside = mask < 128
-    if outside.sum() < 200:
+def _borrow_detail(detail, hole, src_ok):
+    """Fine texture (grout lines, paint grain, noise) for the pixels in `hole`, copied from
+    nearby places of the same photo where `src_ok` is True. Offsets grow outwards, so each
+    hole pixel takes texture from the closest usable spot. Returns an array like `detail`."""
+    h, w = hole.shape
+    ys, xs = np.where(hole)
+    y1, y2, x1, x2 = ys.min(), ys.max() + 1, xs.min(), xs.max() + 1
+    out = np.zeros((h, w), np.float32)
+    todo = hole[y1:y2, x1:x2].copy()
+    rng = np.random.default_rng(1)
+    r, rmax = 8.0, 1.6 * max(h, w)
+    while r < rmax and todo.any():
+        base = rng.uniform(0, np.pi / 8)
+        for k in range(16):
+            ang = base + k * np.pi / 8
+            dy, dx = int(round(r * np.sin(ang))), int(round(r * np.cos(ang)))
+            ty1, ty2 = max(y1, -dy), min(y2, h - dy)
+            tx1, tx2 = max(x1, -dx), min(x2, w - dx)
+            if ty1 >= ty2 or tx1 >= tx2:
+                continue
+            tgt = todo[ty1 - y1:ty2 - y1, tx1 - x1:tx2 - x1]            # a view: edits update `todo`
+            if not tgt.any():
+                continue
+            take = tgt & src_ok[ty1 + dy:ty2 + dy, tx1 + dx:tx2 + dx]
+            if not take.any():
+                continue
+            out[ty1:ty2, tx1:tx2][take] = detail[ty1 + dy:ty2 + dy, tx1 + dx:tx2 + dx][take]
+            tgt[take] = False
+        r *= 1.25
+    return out
+
+
+def _poisson_blend(filled, crop, mask):
+    """Make the fill continue the colour and brightness of the wall / floor around the hole.
+    Poisson (gradient-domain) blending keeps the fill's structure but forces its edge to equal the
+    real pixels next to it, which removes dark or tinted smears. Falls back to the plain fill."""
+    try:
+        P = 12
+        src = cv2.copyMakeBorder(filled, P, P, P, P, cv2.BORDER_REPLICATE)
+        dst = cv2.copyMakeBorder(crop, P, P, P, P, cv2.BORDER_REPLICATE)
+        m = cv2.copyMakeBorder(((mask > 127) * 255).astype(np.uint8), P, P, P, P, cv2.BORDER_CONSTANT, value=0)
+        ys, xs = np.where(m > 127)
+        if len(xs) < 50:
+            return filled
+        center = (int((xs.min() + xs.max()) // 2), int((ys.min() + ys.max()) // 2))
+        out = cv2.seamlessClone(src, dst, m, center, cv2.NORMAL_CLONE)[P:-P, P:-P]
+        hole = mask > 127
+        if float(np.abs(out.astype(np.int16) - filled.astype(np.int16))[hole].mean()) > 45.0:
+            return filled                              # blending went wrong, keep the plain fill
+        return out
+    except cv2.error:
         return filled
-    sigma = float(detail[outside].std())
-    sigma = min(max(sigma, 0.0), 6.0)
-    if sigma < 0.5:
+
+
+def _restore_detail(filled, crop, mask):
+    """Inpainted areas are smoother than a real photo (and LaMa works on a shrunken copy for big
+    objects), which reads as 'blurry'. Measure how much fine texture the untouched pixels around
+    the object have, and add exactly the missing amount, borrowed from those pixels."""
+    hole = mask > 127
+    if hole.sum() < 20:
         return filled
-    rng = np.random.default_rng(0)
-    noise = rng.normal(0, sigma * 0.8, filled.shape[:2]).astype(np.float32)[..., None]
-    return np.clip(filled.astype(np.float32) + noise * (mask[..., None] > 127), 0, 255).astype(np.uint8)
+    k = max(3, int(0.01 * max(mask.shape)) | 1)
+    near = cv2.dilate(mask, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k))) > 127
+    src_ok = ~near
+    if src_ok.sum() < 400:
+        return filled
+    sig = 1.6
+    g_crop = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY).astype(np.float32)
+    g_fill = cv2.cvtColor(filled, cv2.COLOR_BGR2GRAY).astype(np.float32)
+    detail = g_crop - cv2.GaussianBlur(g_crop, (0, 0), sig)
+    fill_detail = g_fill - cv2.GaussianBlur(g_fill, (0, 0), sig)
+    s_out = float(detail[src_ok].std())
+    s_fill = float(fill_detail[hole].std())
+    need = float(np.sqrt(max(s_out ** 2 - s_fill ** 2, 0.0)))
+    if need < 0.4:
+        return filled
+    need = min(need, 14.0)
+    detail = np.clip(detail, -2.5 * s_out, 2.5 * s_out)          # never copy an edge, only fine texture
+    borrowed = _borrow_detail(detail, hole, src_ok)
+    b_std = float(borrowed[hole].std()) + 1e-6
+    add = borrowed / b_std * need
+    return np.clip(filled.astype(np.float32) + add[..., None] * hole[..., None], 0, 255).astype(np.uint8)
+
+
+def _lum(bgr):
+    return cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY).astype(np.float32)
+
+
+def _grow_shadow(crop, m):
+    """The dark shadow / contact edge an object leaves on the floor or wall is NOT part of the object,
+    so a mask that stops at the object leaves a dark smear for the fill to copy. Add the connected pixels
+    next to the mask that are clearly darker than the surroundings."""
+    hole = m > 127
+    S = max(crop.shape[:2])
+    k = max(5, int(0.02 * S) | 1)
+    ek = lambda n: cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (n, n))
+    zone = cv2.dilate(m, ek(5 * k)) > 127
+    far = zone & ~(cv2.dilate(m, ek(2 * k)) > 127)
+    if far.sum() < 200:
+        return m
+    L = _lum(crop)
+    ref = float(np.median(L[far]))
+    dark = zone & ~hole & (L < ref - max(8.0, 0.10 * ref))
+    cand = (dark | hole).astype(np.uint8)
+    n, lab = cv2.connectedComponents(cand)
+    keep = np.unique(lab[hole]); keep = keep[keep > 0]
+    grown = np.isin(lab, keep) & dark
+    if grown.sum() > 2.5 * hole.sum():          # too much growth: probably a dark floor, not a shadow
+        return m
+    out = ((hole | grown).astype(np.uint8)) * 255
+    out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, ek(k))
+    return cv2.dilate(out, ek(max(3, k // 2 | 1)))
+
+
+def _match_tone(filled, crop, m):
+    """If the fill came out darker than the floor / wall around it (the 'black patch'), lift it to match."""
+    hole = m > 127
+    ring = (cv2.dilate(m, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * max(5, int(0.03 * max(m.shape))) | 1,) * 2)) > 127) & ~hole
+    if ring.sum() < 100 or hole.sum() < 50:
+        return filled
+    ring_m = crop[ring].reshape(-1, 3).mean(0)
+    hole_m = filled[hole].reshape(-1, 3).mean(0)
+    if hole_m.mean() > 0.9 * ring_m.mean():
+        return filled
+    gain = np.clip(ring_m / np.maximum(hole_m, 1.0), 1.0, 1.8)
+    f = filled.astype(np.float32)
+    f[hole] = np.clip(f[hole] * gain, 0, 255)
+    return f.astype(np.uint8)
 
 
 def _groups(mask):
@@ -207,11 +320,13 @@ def remove_objects(bgr, mask):
         pad = int(max(96, 0.6 * max(x2 - x1, y2 - y1)))       # context for LaMa to copy texture from
         cx1, cy1, cx2, cy2 = max(0, x1 - pad), max(0, y1 - pad), min(W, x2 + pad), min(H, y2 + pad)
         crop, m = out[cy1:cy2, cx1:cx2], part[cy1:cy2, cx1:cx2]
+        m = _grow_shadow(crop, m)
         filled = _lama_fill(crop, m)
         if filled is None:
             filled, engine = _opencv_fill(crop, m), "opencv"
-        filled = _add_grain(filled, crop, m)
-        k = max(3, int(0.004 * max(H, W)) | 1)
+        filled = _match_tone(filled, crop, m)
+        filled = _restore_detail(filled, crop, m)
+        k = max(3, int(0.008 * max(H, W)) | 1)
         alpha = cv2.GaussianBlur(m.astype(np.float32) / 255.0, (k, k), 0)[..., None]
         alpha = np.maximum(alpha, (m > 127)[..., None].astype(np.float32))
         blended = crop.astype(np.float32) * (1 - alpha) + filled.astype(np.float32) * alpha

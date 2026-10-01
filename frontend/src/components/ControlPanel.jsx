@@ -1,9 +1,10 @@
 import { useRef } from 'react'
+import { Icon } from './ui'
 
 const PRESETS = [10000, 25000, 40000, 75000]
 const inr0 = (n) => '₹' + n.toLocaleString('en-IN')
 
-// room_types can come as plain strings or {value,label} objects; accept both
+// dropdown lists can come as plain strings or {value,label} objects; accept both
 function roomChoices(list) {
   return (list || [])
     .map((o) => (typeof o === 'string' ? { v: o, l: o } : { v: o.value ?? o.id ?? o.key ?? '', l: o.label ?? o.name ?? o.value ?? '' }))
@@ -13,6 +14,7 @@ function roomChoices(list) {
 export default function ControlPanel({ f, options, loading, error, onSubmit }) {
   const fileRef = useRef(null)
   const rooms = roomChoices(options.room_types)
+  const styles = roomChoices(options.styles)
   const typed = f.roomW && f.roomL
   return (
     <aside className="card side">
@@ -21,8 +23,9 @@ export default function ControlPanel({ f, options, loading, error, onSubmit }) {
         <div className="drop" onClick={() => fileRef.current?.click()}
              onDragOver={(e) => e.preventDefault()}
              onDrop={(e) => { e.preventDefault(); f.pickFile(e.dataTransfer.files?.[0]) }}>
-          {f.preview ? <><img src={f.preview} alt="Your room" /><div>{f.photo?.name}</div></> : <div>Click or drop a photo of your room</div>}
-          <input ref={fileRef} type="file" accept="image/*" onChange={(e) => f.pickFile(e.target.files?.[0])} />
+          {f.preview ? <><img src={f.preview} alt="Your room" /><div className="fname">{f.photo?.name}</div><span className="linkbtn">Change image</span></>
+            : <div className="dz"><Icon n="upload" size={26} /><b>Upload your room</b><span>or drag and drop your image here</span><small>JPG / PNG / WEBP</small></div>}
+          <input id="photo-input" ref={fileRef} type="file" accept="image/*" onChange={(e) => f.pickFile(e.target.files?.[0])} />
         </div>
       </div>
 
@@ -39,10 +42,20 @@ export default function ControlPanel({ f, options, loading, error, onSubmit }) {
           <option value="">Not sure</option>
           {rooms.map((o) => <option key={o.v} value={o.v}>{o.l}</option>)}
         </select>
+        <div className="hint">{!f.roomType ? 'We will work out the room type from your photo. ' : ''}We only suggest furniture that belongs in this room.</div>
       </div>
 
       <div className="field">
-        <label>4. Room size in metres <span className="muted">(optional)</span></label>
+        <label htmlFor="st">4. Style <span className="muted">(optional)</span></label>
+        <select id="st" className="select cap" value={f.style} onChange={(e) => f.changeStyle(e.target.value)}>
+          <option value="">Not sure (any style)</option>
+          {styles.map((o) => <option key={o.v} value={o.v}>{o.l}</option>)}
+        </select>
+        <div className="hint">{f.style ? `We only suggest ${f.style} furniture.` : 'No style chosen, so we suggest the best match from every style.'}</div>
+      </div>
+
+      <div className="field">
+        <label>5. Room size in metres <span className="muted">(optional)</span></label>
         <div className="two">
           <input className="input" type="number" min="0" step="0.1" placeholder={f.est ? String(f.est.w) : 'Width'} value={f.roomW} onChange={(e) => f.setRoomW(e.target.value)} />
           <input className="input" type="number" min="0" step="0.1" placeholder={f.est ? String(f.est.l) : 'Length'} value={f.roomL} onChange={(e) => f.setRoomL(e.target.value)} />

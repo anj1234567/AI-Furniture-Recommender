@@ -32,6 +32,14 @@ from recommender.interface import (
 from explainability.interface import explain
 from recommender.interface import DETECTION_TO_CATEGORY
 from recommender.quality import clean_catalog
+from recommender.room_fit import (
+    ROOM_CATEGORIES, room_kind, infer_room_kind, fit_catalog_to_room, plausible_room,
+)
+from perception.style_zeroshot import classify_room
+from recommender.style_filter import filter_by_style
+from recommender.detections_fit import drop_duplicates, recount
+
+MIN_DISPLAY_CONFIDENCE = 0.30   # detections below this are not shown at all
 from store_locator.interface import find_stores
 from db import init_db
 from space.scene import analyze_scene
@@ -85,6 +93,30 @@ if _unmapped:
     print("Colour names not in the colour table (scored as neutral):", _unmapped)
 
 
+print("Style: chosen by the user only (no automatic style detection).")
+
+
+def _style_choices():
+    """STYLE_OPTIONS can be plain strings or {value, label} objects -> [(value, label)]."""
+    out = []
+    for o in STYLE_OPTIONS or []:
+        if isinstance(o, str):
+            v, l = o, o
+        elif isinstance(o, dict):
+            v = o.get("value") or o.get("id") or o.get("key") or o.get("label") or ""
+            l = o.get("label") or o.get("name") or v
+        elif isinstance(o, (list, tuple)) and o:
+            v, l = o[0], (o[1] if len(o) > 1 else o[0])
+        else:
+            continue
+        if str(v).strip() and not _no_choice(str(v)) and not _no_choice(str(l)):
+            out.append((str(v), str(l)))
+    return out
+
+
+STYLE_CHOICES = _style_choices()
+
+
 @app.post("/analyze")
 async def analyze(
     photo: UploadFile = File(...),
@@ -111,25 +143,57 @@ async def analyze(
         )
 
     # Decide which detections count as "the room already has this".
+    perception_result["detections"] = drop_duplicates(perception_result["detections"])   # one object, one box
     for d in perception_result["detections"]:
         d["counted"], d["not_counted_reason"] = classify_detection(d)
+    _img = cv2.imread(photo_path)
+    if _img is not None:     # clearly visible furniture must count even at 45-60% confidence
+        recount(perception_result["detections"], DETECTION_TO_CATEGORY, _img.shape[1], _img.shape[0])
 
-    # Gap analysis: only recommend categories the room is missing.
-    missing = find_missing_categories(CATALOG, perception_result["detections"])
-    candidate_catalog = filter_to_missing(CATALOG, missing)
-    if str(room_type).strip().lower() != "outdoor":   # no patio furniture for an indoor room
+    # Gap analysis: only recommend categories the room is missing AND that belong in this room
+    # (no sofa for a kitchen, no bed for a living room).
+    kind = room_kind(room_type)
+    kind_source = "user" if kind else None
+    if kind is None:
+        kind = infer_room_kind(perception_result["detections"], DETECTION_TO_CATEGORY)
+        kind_source = "photo" if kind else None
+    if kind is None:           # the furniture did not settle it: ask CLIP what kind of room the photo shows
+        rc = classify_room(photo_path)
+        if rc and rc["confidence"] >= 0.40:
+            kind, kind_source = rc["kind"], "photo"
+    allowed = ROOM_CATEGORIES.get(kind)
+    # What the room already has = the detections that count for the gap analysis (decided above).
+    present_cats = {DETECTION_TO_CATEGORY[d["label"]] for d in perception_result["detections"]
+                    if d.get("counted") and d["label"] in DETECTION_TO_CATEGORY}
+    _seen = []
+    for i in CATALOG:
+        c = i.get("category")
+        if c is not None and c not in _seen:
+            _seen.append(c)
+    missing_all = [c for c in _seen if c not in present_cats]
+    if allowed:
+        missing = [c for c in missing_all if str(c).lower() in allowed]
+        upgrade_mode = not missing           # room already has everything it needs: suggest upgrades
+        cats = {str(c).lower() for c in missing} if missing else set(allowed)
+        candidate_catalog = [i for i in CATALOG if str(i.get("category", "")).lower() in cats]
+    else:
+        missing = missing_all
+        candidate_catalog = filter_to_missing(CATALOG, missing)
+        upgrade_mode = len(missing) == 0     # room already has every catalog category
+    if str(room_type).strip().lower() != "outdoor" and kind != "outdoor":   # no patio furniture for an indoor room
         candidate_catalog = [i for i in candidate_catalog if i.get("room_type") != "outdoor"] or candidate_catalog
-    upgrade_mode = len(missing) == 0  # room already has every catalog category
+    candidate_catalog = fit_catalog_to_room(candidate_catalog, kind)   # bedside table for a bedroom, dining table for a kitchen
 
-    # Style: the user's pick wins. Until the style classifier is trained,
-    # the perception layer returns "unclassified", so this pick is the
-    # source of the style (docs/CONTRACTS.md: user confirmation flow).
+    # Style: only what the user picked. "Not sure" = no style preference (neutral scoring, no filter).
     if not _no_choice(style):
         style_source = "user"
-    elif perception_result["style"]["confidence"] >= 0.5:      # trained classifier is confident enough
-        style, style_source = perception_result["style"]["label"], "model"
-    else:                                                      # not sure: stay neutral instead of guessing
+        perception_result["style"] = {"label": style, "confidence": 1.0, "source": "user"}
+    else:
         style, style_source = "unclassified", "none"
+        perception_result["style"] = {"label": "unclassified", "confidence": 0.0, "source": "none"}
+    perception_result["needs_confirmation"] = False
+    # Only furniture in the chosen style is suggested (swap alternatives come from the same list).
+    candidate_catalog, style_filter_info = filter_by_style(candidate_catalog, style)
     room_type = None if _no_choice(room_type) else room_type
     palette = perception_result["dominant_colors"]
 
@@ -141,11 +205,12 @@ async def analyze(
         space_source = "user"
     elif scene["room"]:
         room_width_m, room_length_m, space_source = scene["room"]["width_m"], scene["room"]["length_m"], "estimated"
+        # one photo shows only part of a room, so keep the estimate inside a normal range for this room
+        room_width_m, room_length_m, _ = plausible_room(room_width_m, room_length_m, kind)
     if space_source:
-        present = {DETECTION_TO_CATEGORY[d["label"]] for d in perception_result["detections"]
-                   if d.get("counted") and d["label"] in DETECTION_TO_CATEGORY}
-        space = space_summary(room_width_m, room_length_m, CATALOG, present)
+        space = space_summary(room_width_m, room_length_m, CATALOG, present_cats)
         space["source"] = space_source
+        space["room_w_m"], space["room_l_m"] = round(float(room_width_m), 1), round(float(room_length_m), 1)   # exactly the size used everywhere
         room_dims, space_m2 = (room_width_m, room_length_m), space["usable_m2"]
 
     rec_result = recommend(style=style, palette=palette, budget=budget,
@@ -186,13 +251,28 @@ async def analyze(
         for alt in alts:
             decorate(alt)
 
+    # Detections list for the page: just what was found and how sure the model is. Whether a detection
+    # also counts for the gap analysis was decided above; the page does not need to explain that.
+    shown = []
+    for d in perception_result["detections"]:
+        if float(d.get("confidence", 0)) < MIN_DISPLAY_CONFIDENCE:
+            continue
+        d["counts_for_gap"] = bool(d.get("counted"))
+        d["counted"], d["not_counted_reason"] = True, None
+        shown.append(d)
+    perception_result["detections"] = shown
+
     used = rec_result["total_price"]
     return {
         "perception": perception_result,
         "scene": scene["camera"],     # camera + floor plane for the 3D-in-photo view
         "mesh": None,                 # the orbit "Room in 3D" view was removed; keeps the response small
-        "style_used": {"label": style, "source": style_source},
+        "style_used": {"label": style, "source": style_source, "ranking": None,
+                       "confidence": perception_result["style"].get("confidence")},
         "room_type_used": room_type,
+        "room_kind": {"kind": kind, "source": kind_source},
+        "style_model_loaded": True,      # style is chosen by the user, so no model is needed
+        "style_filter": style_filter_info,
         "space": None if space is None else {
             **space, "used_m2": round(sum(footprint_m2(catalog_by_id[i["item_id"]]) for i in rec_result["selected_items"]), 2)},
         "budget_summary": {
@@ -204,6 +284,7 @@ async def analyze(
         "recommendation": rec_result,
         "gap_analysis": {
             "missing_categories": missing,
+            "present_categories": sorted(str(c) for c in present_cats),
             "upgrade_mode": upgrade_mode,
             "min_confidence": MIN_DETECTION_CONFIDENCE,
         },
@@ -244,13 +325,13 @@ def inpaint(
         painted = cv2.imdecode(np.frombuffer(mask.file.read(), np.uint8), cv2.IMREAD_GRAYSCALE)
         if painted is not None:
             painted = cv2.resize(painted, (bgr.shape[1], bgr.shape[0]), interpolation=cv2.INTER_NEAREST)
-            m = np.maximum(m, grow_mask(painted, 0.01))
+            m = np.maximum(m, grow_mask(painted, 0.012))
     if not m.any():
         raise HTTPException(status_code=400, detail="Nothing selected. Click a detected object or paint over it.")
     if m.mean() / 255.0 > 0.6:
         raise HTTPException(status_code=400, detail="That would remove most of the photo. Select smaller areas.")
     cleaned, engine = remove_objects(bgr, m)
-    ok, buf = cv2.imencode(".jpg", cleaned, [cv2.IMWRITE_JPEG_QUALITY, 92])
+    ok, buf = cv2.imencode(".jpg", cleaned, [cv2.IMWRITE_JPEG_QUALITY, 96])
     if not ok:
         raise HTTPException(status_code=500, detail="Could not encode the cleaned photo.")
     return Response(content=buf.tobytes(), media_type="image/jpeg", headers={"X-Inpaint-Method": engine})
