@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { API_URL } from '../lib/api'
+import { BeforeAfter } from './ui'
 
 const MAX_MASK = 1600      // painted mask is kept at most this many pixels on its long side
 
@@ -123,10 +124,7 @@ export default function ObjectRemover({ result, preview, photo, origPreview, edi
       {edited && origPreview && (
         <div className="card">
           <div className="sub">Before and after</div>
-          <div className="ba">
-            <figure><img src={origPreview} alt="original" /><figcaption>Original</figcaption></figure>
-            <figure><img src={preview} alt="cleaned" /><figcaption>Cleaned</figcaption></figure>
-          </div>
+          <BeforeAfter before={origPreview} after={preview} />
         </div>
       )}
     </div>

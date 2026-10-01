@@ -1,7 +1,12 @@
+import { useEffect, useState } from 'react'
 import { API_URL, inr } from '../lib/api'
 
 export default function PicksPanel({ d }) {
-  const { items, optimal, alts, bs, sp, usedArea, totalScore, anySwapped, budget, picks, setPicks, openSwap, setOpenSwap, setView3d } = d
+  const { focusCat, items: allItems, optimal, alts, bs, sp, usedArea, totalScore, anySwapped, budget, picks, setPicks, openSwap, setOpenSwap, setView3d } = d
+  const [cat, setCat] = useState('all')
+  useEffect(() => { setCat(focusCat || 'all') }, [focusCat])
+  const cats = [...new Set(allItems.map((i) => i.category))]
+  const items = cat === 'all' ? allItems : allItems.filter((i) => i.category === cat)
   return (
     <div className="stack">
       {bs && (
@@ -16,7 +21,7 @@ export default function PicksPanel({ d }) {
                 <span className="muted">{Math.max(0, sp.usable_m2 - usedArea).toFixed(1)} m² left</span></div>
               <div className="bar"><div style={{ width: `${sp.usable_m2 > 0 ? Math.min(100, (100 * usedArea) / sp.usable_m2) : 100}%` }} /></div>
             </div>
-          ) : <div className="hint">Floor-space check is off because the room size could not be estimated. Type it under More options.</div>}
+          ) : <div className="hint">Floor-space check is off because the room size could not be estimated. Type it in the room size field.</div>}
           <div className="hint">
             Total match score {totalScore.toFixed(2)}.
             {sp && ` Room ${sp.room_w_m} × ${sp.room_l_m} m (${sp.source === 'estimated' ? 'estimated from your photo' : 'entered by you'}), ${sp.walkway_pct}% kept free for walking.`}
@@ -25,6 +30,11 @@ export default function PicksPanel({ d }) {
         </div>
       )}
 
+      {cats.length > 1 && (
+        <div className="chiprow" role="group" aria-label="Filter by category">
+          {['all', ...cats].map((c) => <button key={c} type="button" className={`tagbtn cap ${cat === c ? 'on' : ''}`} onClick={() => setCat(c)}>{c === 'all' ? 'All' : c}</button>)}
+        </div>
+      )}
       {items.length === 0 ? <div className="card">Nothing fits this budget and room. Try a higher budget or a larger room size.</div> : (
         <div className="grid">
           {items.map((item) => {
@@ -32,7 +42,7 @@ export default function PicksPanel({ d }) {
             const choices = [orig, ...(alts[item.category] ?? [])].filter((c) => c.item_id !== item.item_id)
             const open = openSwap === item.category
             return (
-              <div key={item.category} className="card prod">
+              <div key={item.category} className={`card prod ${focusCat === item.category ? 'focus' : ''}`}>
                 <div className="pic">
                   <span className="pill">{item.category}</span>
                   {item.image && <img src={`${API_URL}${item.image}`} alt={item.name} />}
@@ -46,7 +56,7 @@ export default function PicksPanel({ d }) {
                   <div className="meta">
                     {[item.width_cm && `${item.width_cm} × ${item.depth_cm}${item.height_cm ? ' × ' + item.height_cm : ''} cm`, item.material].filter(Boolean).join(' · ')}
                   </div>
-                  <div className="why">{item.explanation}</div>
+                  <div className="why"><b>Why we recommend this</b>{item.explanation}</div>
                   <div className="btnrow">
                     {item.model_url && <button type="button" className="ghost" onClick={() => setView3d(item)}>View 3D</button>}
                     {choices.length > 0 && <button type="button" className="ghost" onClick={() => setOpenSwap(open ? null : item.category)}>{open ? 'Hide' : `Swap (${choices.length})`}</button>}

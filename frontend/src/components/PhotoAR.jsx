@@ -42,10 +42,13 @@ export default function PhotoAR({ items, camera: cam, mesh, roomLength, photoUrl
     Object.assign(sun.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7, near: 0.5, far: 15 })
     frame.add(sun, sun.target)
     const catcher = new THREE.Mesh(new THREE.PlaneGeometry(40, 40),
-      new THREE.ShadowMaterial({ opacity: 0.4, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }))
+      new THREE.ShadowMaterial({ opacity: 0.4, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }))   // depthWrite off: this invisible plane must not hide the grid lying on the same floor
     catcher.rotation.x = -Math.PI / 2; catcher.receiveShadow = true; frame.add(catcher)
-    const gridHelper = new THREE.GridHelper(12, 24, 0xffffff, 0xffffff)
-    gridHelper.material.transparent = true; gridHelper.material.opacity = 0.45; gridHelper.visible = false
+    // 1 m x 1 m squares in a colour that shows on both light and dark floors, lifted 4 mm above the floor
+    const gridHelper = new THREE.GridHelper(20, 20, 0x0d9488, 0x14b8a6)
+    gridHelper.position.y = 0.004; gridHelper.renderOrder = 5
+    Object.assign(gridHelper.material, { transparent: true, opacity: 0.95, depthWrite: false, toneMapped: false })
+    gridHelper.visible = false
     frame.add(gridHelper)
     const stuff = new THREE.Group(); frame.add(stuff)
 
@@ -134,7 +137,8 @@ export default function PhotoAR({ items, camera: cam, mesh, roomLength, photoUrl
     t.prevH = h
   }, [h, tilt, cam])
 
-  useEffect(() => { T.current.gridHelper.visible = grid }, [grid])
+  // also re-apply when the scene is rebuilt (new photo), otherwise the new grid starts hidden
+  useEffect(() => { if (T.current.gridHelper) T.current.gridHelper.visible = grid }, [grid, cam.fov_v_deg, cam.aspect])
 
   // ---- (re)build the furniture when the chosen items change ----
   const key = items.map((i) => i.item_id).join(',')
@@ -307,7 +311,7 @@ export default function PhotoAR({ items, camera: cam, mesh, roomLength, photoUrl
             <input type="range" min="0.8" max="2.4" step="0.05" value={h} onChange={(e) => setH(Number(e.target.value))} /></label>
           <label>Floor tilt {tilt}°
             <input type="range" min="-20" max="20" step="1" value={tilt} onChange={(e) => setTilt(Number(e.target.value))} /></label>
-          <label className="check"><input type="checkbox" checked={grid} onChange={(e) => setGrid(e.target.checked)} /> Show floor grid</label>
+          <label className="check"><input type="checkbox" checked={grid} onChange={(e) => setGrid(e.target.checked)} /> Show floor grid (1 m squares)</label>
         </div>
         <div className="hint">
           Drag a piece along the floor to move it. Furniture looks too small? Lower the camera height. Too big? Raise it.
